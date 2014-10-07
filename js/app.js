@@ -4,7 +4,7 @@ $(function() {
     username: "javierarce",
     api_key: "52baf5483029010e0e7ece53ac76449e" 
   }).on("listening", function(e, track) {
-    $("listening-js").removeClass("hidden");
+    $(".listening-js").removeClass("hidden");
   });
 
   var myUsername = "javier";
