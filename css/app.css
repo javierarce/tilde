@@ -18,6 +18,7 @@ p {
 }
 .listening .track,
 .listening a { 
+  text-decoration: underline;
   display: inline-block;
 }
 .listening .track strong { 
@@ -30,3 +31,32 @@ p {
   cursor: help;
 }
 
+.battery {
+  position:absolute;
+  right: 10px;
+  top: 10px;
+  width: 22px;
+  height: 10px;
+  background: url(../img/battery.png) no-repeat 0 0;
+}
+.battery.battery-level-0 {
+  background-position: 0 0;
+}
+.battery.battery-level-1 {
+  background-position: 0 -13px;
+}
+.battery.battery-level-2 {
+  background-position: 0 -26px;
+}
+.battery.battery-level-3 {
+  background-position: 0 -39px;
+}
+.battery.battery-level-4 {
+  background-position: 0 -52px;
+}
+.battery.battery-level-5 {
+  background-position: 0 -65px;
+}
+.battery.battery-level-6 {
+  background-position: 0 -78px;
+}
