@@ -1,5 +1,8 @@
 $(function() {
 
+  $(document).bind("mouseup", Corrector.Selector.onMouseUp);
+  $(document).bind("mousedown", Corrector.Selector.onMouseDown);
+
   var myUsername = "javier";
 
   Retina.init();
