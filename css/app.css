@@ -10,6 +10,12 @@ p {
   line-height: 120%;
   max-width: 700px;
 }
+.credits {
+  text-align: right;
+}
+.u--centered {
+  text-align: center;
+}
 .hidden { 
   display: none;
 }
@@ -59,16 +65,54 @@ p {
 .battery.battery-level-6 {
   background-position: 0 -78px;
 }
-@media
-    only screen and (min-device-pixel-ratio: 2),
-    only screen and (-webkit-min-device-pixel-ratio: 2),
-    only screen and (-moz-min-device-pixel-ratio: 2),
-    only screen and (-o-min-device-pixel-ratio: 2/1) {
-        .battery {
-            background: url(../img/battery@2x.png);
-            background-size: 22px 88px;
-        }
-}
 .heart {
   color: rgba(218, 26, 16, 1);
+}
+.columns {
+  -webkit-column-gap: 40px; 
+  -moz-column-gap: 40x; 
+  column-gap: 40px;
+  -webkit-column-count: 3; 
+  -moz-column-count: 3; 
+  column-count: 3;
+}
+.separator {
+  height: 1px;
+  border-top: 1px solid #333;
+  margin: 15px 0;
+}
+
+footer {
+  margin: 10px 0 0 0;
+  border-top: 1px solid #333;
+  padding: 5px 0 0 0;
+}
+@media all and (max-width: 700px) {
+  body .columns {
+    -webkit-column-count: 1; /* Chrome, Safari, Opera */
+    -moz-column-count: 1; 
+    column-count: 1;/* Firefox */
+  }
+}
+@media all and (min-width: 701px) and (max-width: 950px) {
+  body .columns {
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; 
+    column-count: 2;/* Firefox */
+  }
+}
+@media
+only screen and (min-device-pixel-ratio: 2),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (-moz-min-device-pixel-ratio: 2),
+only screen and (-o-min-device-pixel-ratio: 2/1) {
+  .columns {
+    -webkit-column-count: none; /* Chrome, Safari, Opera */
+    -moz-column-count: none; /* Firefox */
+    column-count: none;
+  }
+  .battery {
+    background: url(../img/battery@2x.png);
+    background-size: 22px 88px;
+  }
 }

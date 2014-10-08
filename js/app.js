@@ -1,5 +1,7 @@
 $(function() {
 
+  var myUsername = "javier";
+
   Retina.init();
 
   $(".listening-js").snitch({
@@ -9,14 +11,31 @@ $(function() {
     $(".listening-js").removeClass("hidden");
   });
 
-  var myUsername = "javier";
+
+  $.ajax({ url: "http://tilde.club/~delfuego/tilde.24h.json", success: function(data) {
+
+    var modtime;
+
+    $.each(data.pagelist, function(i, user) { 
+      if (user.username === myUsername) { 
+        modtime = user.modtime; 
+      }
+    });
+
+    if (modtime) {
+      var date = new Date(modtime);
+      $(".updated-at-js").html("on " + date.toString());
+    }
+
+  }});
 
   $.ajax({ url: "http://tilde.club/~gabriel/who.json", success: function(data) {
     var online = false;
 
     $.each(data.online, function(i, username) { 
       if (username === myUsername) { 
-        online = true; }
+        online = true; 
+      }
     });
 
     if (online) $(".online-status-js").removeClass("hidden");
