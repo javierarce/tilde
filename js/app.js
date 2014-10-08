@@ -1,5 +1,7 @@
 $(function() {
 
+  Retina.init();
+
   $(".listening-js").snitch({
     username: "javierarce",
     api_key: "52baf5483029010e0e7ece53ac76449e" 
