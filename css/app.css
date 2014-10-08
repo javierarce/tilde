@@ -60,3 +60,13 @@ p {
 .battery.battery-level-6 {
   background-position: 0 -78px;
 }
+@media
+    only screen and (min-device-pixel-ratio: 2),
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (-moz-min-device-pixel-ratio: 2),
+    only screen and (-o-min-device-pixel-ratio: 2/1) {
+        .battery {
+            background: url(../img/battery@2x.png);
+            background-size: 22px 88px;
+        }
+}
