@@ -3,7 +3,7 @@ body {
   padding: 20px;
 }
 a, a:visited, a:active, a:hover { 
-  color: #333;
+  color: #000;
 }
 h3 {
   font-size: 1em;
@@ -38,7 +38,7 @@ p {
 .listening {
   margin: 0;
   font-size: 14px;
-  border-top: 1px solid #333;
+  border-top: 1px solid #000;
   padding: 15px 0 0 0;
   text-align: center;
 }
@@ -97,13 +97,13 @@ p {
 }
 .separator {
   height: 1px;
-  border-top: 1px solid #333;
+  border-top: 1px solid #000;
   margin: 15px 0;
 }
 
 footer {
   margin: 40px 0 0 0;
-  border-top: 1px solid #333;
+  border-top: 1px solid #000;
   padding: 5px 0 0 0;
 }
 @media all and (max-width: 700px) {
@@ -135,13 +135,7 @@ only screen and (-o-min-device-pixel-ratio: 2/1) {
     background-size: 22px 88px;
   }
 }
-.overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100px;
-  height: 100px;
-  background: red;
-}
+
 .post.dark-post {
   background: #000;
   color: #fff;
@@ -157,4 +151,11 @@ only screen and (-o-min-device-pixel-ratio: 2/1) {
   margin: 10px;
 }
 .post.dark-post p {
+}
+.overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100px;
+  height: 100px;
+  background: red;
 }
