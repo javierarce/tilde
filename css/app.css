@@ -5,6 +5,10 @@ body {
 a, a:visited, a:active, a:hover { 
   color: #333;
 }
+h3 {
+  font-size: 1em;
+  margin: 0 0 7px 0;
+}
 p { 
   margin: 0 0 10px 0;
   line-height: 120%;
@@ -13,6 +17,18 @@ p {
 .credits {
   text-align: right;
 }
+.u--push-5 {
+  margin-bottom: 5px;
+}
+.u--push-10 {
+  margin-bottom: 10px;
+}
+.u--push-20 {
+  margin-bottom: 20px;
+}
+.u--marginless {
+  margin: 0;
+} 
 .u--centered {
   text-align: center;
 }
@@ -20,12 +36,15 @@ p {
   display: none;
 }
 .listening {
-  margin: 0 0 15px 0;
+  margin: 0;
+  font-size: 14px;
+  border-top: 1px solid #333;
+  padding: 15px 0 0 0;
+  text-align: center;
 }
 .listening .track,
 .listening a { 
   text-decoration: underline;
-  display: inline-block;
 }
 .listening .track strong { 
   font-weight: normal;
@@ -83,7 +102,7 @@ p {
 }
 
 footer {
-  margin: 10px 0 0 0;
+  margin: 40px 0 0 0;
   border-top: 1px solid #333;
   padding: 5px 0 0 0;
 }
@@ -122,4 +141,20 @@ only screen and (-o-min-device-pixel-ratio: 2/1) {
   width: 100px;
   height: 100px;
   background: red;
+}
+.post.dark-post {
+  background: #000;
+  color: #fff;
+  padding: 5px;
+}
+.post.dark-post p.u--border {
+  border: 2px solid #fff;
+  padding: 15px;
+  margin: 5px;
+}
+.post.dark-post .separator {
+  border-top: 1px solid #fff;
+  margin: 10px;
+}
+.post.dark-post p {
 }
