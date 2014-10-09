@@ -2,6 +2,16 @@ $(function() {
 
   var myUsername = "javier";
 
+  var moments = [
+    "with the help of large amounts of coffee",
+    "inconspicuously",
+    "in a moment of total sadness",
+    "without paying much attention"
+  ];
+
+  var randomMoment = moments[Math.round(Math.random()*moments.length)];
+  $(".random-update-moment-js").text(randomMoment)
+
   Retina.init();
 
   $(".listening-js").snitch({

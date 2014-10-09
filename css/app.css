@@ -87,7 +87,7 @@ p {
 }
 
 footer {
-  margin: 10px 0 0 0;
+  margin: 40px 0 0 0;
   border-top: 1px solid #333;
   padding: 5px 0 0 0;
 }
@@ -119,4 +119,21 @@ only screen and (-o-min-device-pixel-ratio: 2/1) {
     background: url(../img/battery@2x.png);
     background-size: 22px 88px;
   }
+}
+
+.post.dark-post {
+  background: #000;
+  color: #fff;
+  padding: 5px;
+}
+.post.dark-post p.u--border {
+  border: 2px solid #fff;
+  padding: 15px;
+  margin: 5px;
+}
+.post.dark-post .separator {
+  border-top: 1px solid #fff;
+  margin: 10px;
+}
+.post.dark-post p {
 }
