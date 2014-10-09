@@ -17,6 +17,18 @@ p {
 .credits {
   text-align: right;
 }
+.u--push-5 {
+  margin-bottom: 5px;
+}
+.u--push-10 {
+  margin-bottom: 10px;
+}
+.u--push-20 {
+  margin-bottom: 20px;
+}
+.u--marginless {
+  margin: 0;
+} 
 .u--centered {
   text-align: center;
 }
@@ -24,12 +36,15 @@ p {
   display: none;
 }
 .listening {
-  margin: 0 0 15px 0;
+  margin: 0;
+  font-size: 14px;
+  border-top: 1px solid #333;
+  padding: 15px 0 0 0;
+  text-align: center;
 }
 .listening .track,
 .listening a { 
   text-decoration: underline;
-  display: inline-block;
 }
 .listening .track strong { 
   font-weight: normal;
