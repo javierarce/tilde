@@ -2,13 +2,25 @@ $(function() {
 
   $(".nostalgia-slider-js").on("input", function() {
     var level = $(this).val();
-    if (level >= 99) level = level + " (mortal danger)";
-    else if (level >= 95) level = level +" (what are you doing?)";
-    else if (level >= 90) level = level + " (watch out)"
+    if (level >= 99)      msg = "you are just going to die";
+    else if (level >= 95) msg = "what are you doing?";
+    else if (level >= 90) msg = "watch out";
+    else if (level >= 80) msg = "you don't want to do that";
+    else if (level >= 75) msg = "haha… wait!";
+    else if (level >= 70) msg = "haha";
+    else if (level <= 5)  msg = "you insensible machine";
+    else if (level <= 10) msg = "c'mon!";
+    else if (level <= 20) msg = "what?";
+    else if (level <= 30) msg = "mmm";
+    else msg = "";
 
-    if (level <= 5) level = level + " (you insensible machine)";
-    else if (level <= 10) level = level + " (c'mon)"
-    $(".nostalgia-level-msg-js").html(level);
+    if (msg) {
+      msg = " <small>(" + msg + ")</small>";
+      $(".nostalgia-level-msg-js").html(level + msg);
+    } else {
+      $(".nostalgia-level-msg-js").html(level);
+    }
+
   });
 
   var myUsername = "javier";
