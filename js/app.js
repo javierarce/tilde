@@ -1,5 +1,16 @@
 $(function() {
 
+  $(".nostalgia-slider-js").on("input", function() {
+    var level = $(this).val();
+    if (level >= 99) level = level + " (mortal danger)";
+    else if (level >= 95) level = level +" (what are you doing?)";
+    else if (level >= 90) level = level + " (watch out)"
+
+    if (level <= 5) level = level + " (you insensible machine)";
+    else if (level <= 10) level = level + " (c'mon)"
+    $(".nostalgia-level-msg-js").html(level);
+  });
+
   var myUsername = "javier";
 
   var moments = [
