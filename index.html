@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <title>★ Adventures in text ★</title>
     <meta name="viewport" content="width=device-width">
-    <script src="http://www.google.com/jsapi"></script>
-    <script>google.load("jquery", "1.7.1");</script>
-    <script src="js/jquery.music.snitch.js"></script>
-    <script src="js/retina.js"></script>
+    <!--(if target dev)><!-->
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/jquery.music.snitch.js"></script>
+    <script src="js/vendor/retina.js"></script>
     <script src="js/app.js"></script>
     <link href='css/app.css' rel='stylesheet' type='text/css' />
+    <!--<!(endif)-->
+    <!--(if target dist)><!-->
+    <script src="js/tilde.min.js"></script>
+    <link href='css/tilde.min.css' rel='stylesheet' type='text/css' />
+    <!--<!(endif)-->
   </head>
   <body>
 
@@ -50,14 +55,6 @@
         <small>If you are interested in any of these positions, please <a href="http://twitter.com/javier">send us an email</a>.</small>
       </p>
 
-      <p class="separator"></p>
-
-      <p>
-        <small>
-          (little known fact [hence the parentheses]: if I don't write here every day this page might dissapear)
-        </small>
-      </p>
-
       <p class="hidden">
         I like hiding messages in other things. Is there such a thing as a "professional steganographer"? IDK. It's good that this is here. It's good that I don't know if you are reading this (you're probably here and you're probably not reading this). It's good not to have to worry about numbers and pairs of eyes looking at these words and brains processing what those eyes see. Bye.
       </p>
@@ -79,6 +76,7 @@
       <p>October:</p>
 
       <ul>
+        <li><em>11</em>: <a href="https://p1k3.com/userland-book/">Userland</a>.</li>
         <li><em>10</em>: WFH &middot; CyborgCamp &middot; Belmondo.</li>
         <li><em>09</em>: <a href="http://cl.ly/image/2i3v3p3H030d/Screen%20Shot%202014-10-09%20at%2016.32.52.png">Impersonating a painter.</a> &middot; León.</li>
         <li><em>08</em>: Bad Maths &middot; Professional steganographer &middot; <s>CentroCentro</s>.</li>
@@ -98,6 +96,7 @@
         <ul>
           <li><em>Limonov</em> by Emmanuel Carrère.</li>
           <li><em>What We See When We Read</em> by Peter Mendelsund.</li>
+          <li><a href="https://p1k3.com/userland-book/">Userland</a>, by <a href="https://twitter.com/brennen">Brennen</a></li>
         </ul>
       </p>
 
@@ -136,7 +135,7 @@
       <div class="separator"></div>
 
       <div class="post dark-post">
-        <p class="u--border u--centered">YOUR AD ABOUT MAN-EATING TREES HERE</p>
+        <p class="u--italics u--border u--centered">YOUR AD ABOUT MAN-EATING TREES HERE</p>
       </div>
 
       <div class="separator"></div>
@@ -233,6 +232,7 @@
       <small>
         This ~ was updated <span class="random-update-moment-js"></span> <span class="updated-at-js"></span> from Madrid by <a href="http://twitter.com/javier">@javier</a>. Powered by <span class="heart">♥</span> (by a unicode character of a red heart, not by actual love)
       </small>
+        <img src="http://hitwebcounter.com/counter/counter.php?page=5806075&style=0007&nbdigits=5&type=ip&initCount=0" class="counter" />   
     </footer>
 
   </body>

@@ -1,2 +1,5 @@
+.tmp
 .DS_Store
 publish
+node_modules
+npm-debug.log
