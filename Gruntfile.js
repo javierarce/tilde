@@ -39,7 +39,8 @@ module.exports = function(grunt) {
 
     exec: {
       capture: {
-        cmd: 'sh capture'
+        cmd: 'node capture.js',
+        stdout: true
       },
       deploy: {
         cmd: 'sh publish'
@@ -205,12 +206,12 @@ module.exports = function(grunt) {
     //'jst',
     'concat:js',
     'uglify',
-    'targethtml'
+    'targethtml',
+    'exec:capture',
   ]);
 
   grunt.registerTask('release', [
     'build',
-    'exec:capture',
     'exec:deploy',
     'push'
   ]);

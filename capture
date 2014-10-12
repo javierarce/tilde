@@ -1,2 +1,2 @@
- #!/bin/bash
- pageres tilde.club/~javier 1280x1024 --filename 'captures/<%= date %>-<%= url %>'
+#!/bin/bash
+pageres [tilde.club/~javier 1280x1024 --verbose --filename 'captures/<%= date %>-<%= url %>']
