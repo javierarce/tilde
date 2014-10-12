@@ -1,0 +1,2 @@
+ #!/bin/bash
+ pageres tilde.club/~javier 1280x1024 --filename 'captures/<%= date %>-<%= url %>'

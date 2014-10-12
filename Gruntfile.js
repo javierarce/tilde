@@ -38,11 +38,8 @@ module.exports = function(grunt) {
     },
 
     exec: {
-      move_captures: {
-        cmd: 'sh move_captures'
-      },
       capture: {
-        cmd: 'node capture.js'
+        cmd: 'sh capture'
       },
       deploy: {
         cmd: 'sh publish'
@@ -203,13 +200,12 @@ module.exports = function(grunt) {
     'concat:html',
     'autoprefixer',
     'cssmin',
+    'imagemin',
     //'createDefaultTemplate',
     //'jst',
     'concat:js',
     'uglify',
-    'targethtml',
-    'exec:move_captures',
-    'imagemin'
+    'targethtml'
   ]);
 
   grunt.registerTask('release', [
