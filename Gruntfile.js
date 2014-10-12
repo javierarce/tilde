@@ -1,14 +1,14 @@
 module.exports = function(grunt) {
 
-    require('load-grunt-tasks')(grunt);
-    require('time-grunt')(grunt);
+  require('load-grunt-tasks')(grunt);
+  require('time-grunt')(grunt);
 
-    // 1. All configuration goes here
-    grunt.initConfig({
+  // 1. All configuration goes here
+  grunt.initConfig({
 
-      pkg: grunt.file.readJSON('package.json'),
+    pkg: grunt.file.readJSON('package.json'),
 
-  clean: {
+    clean: {
       dist: {
         files: [{
           dot: true,
@@ -36,38 +36,41 @@ module.exports = function(grunt) {
         }]
       }
     },
-      exec: {
-        serve: {
-          cmd: 'open index.html'
-        },
 
-        deploy: {
-          cmd: 'publish'
-        }
+    exec: {
+      move_captures: {
+        cmd: 'sh move_captures'
       },
+      capture: {
+        cmd: 'node capture.js'
+      },
+      deploy: {
+        cmd: 'sh publish'
+      }
+    },
 
-      concat: {
-        html: {
-          src: [
-            'index.html'
-          ],
-          dest: 'dist/index.html'
-        },
-        css: {
-          src: [
-            //'scss/vendor/reset.css',
-            'scss/*.scss'
-          ],
-          dest: 'dist/css/<%= pkg.name %>.css'
-        },
-        js: {
-          src: [
-            'js/vendor/*.js',
-            'js/*.js',
-          ],
-          dest: 'dist/js/<%= pkg.name %>.js'
-        }
+    concat: {
+      html: {
+        src: [
+          'index.html'
+        ],
+        dest: 'dist/index.html'
       },
+      css: {
+        src: [
+          //'scss/vendor/reset.css',
+          'scss/*.scss'
+        ],
+        dest: 'dist/css/<%= pkg.name %>.css'
+      },
+      js: {
+        src: [
+          'js/vendor/*.js',
+          'js/*.js',
+        ],
+        dest: 'dist/js/<%= pkg.name %>.js'
+      }
+    },
 
     uglify: {
       options: {
@@ -81,38 +84,38 @@ module.exports = function(grunt) {
       }
     },
 
-      jshint: {
-        all: ['Gruntfile.js', 'js/app.js']
-      },
+    jshint: {
+      all: ['Gruntfile.js', 'js/app.js']
+    },
 
-      scsslint: {
-        allFiles: [
-          'scss/*.scss',
-        ],
-        options: {
-          config: '.scss-lint.yml'
-        },
+    scsslint: {
+      allFiles: [
+        'scss/*.scss',
+      ],
+      options: {
+        config: '.scss-lint.yml'
       },
+    },
 
-      sass: {
-        dist: {
-          files: [{
-            expand: true,
-            cwd: 'scss',
-            src: ['*.scss'],
-            dest: 'css',
-            ext: '.css'
-          }]
-        }
-      },
-      
+    sass: {
+      dist: {
+        files: [{
+          expand: true,
+          cwd: 'scss',
+          src: ['*.scss'],
+          dest: 'css',
+          ext: '.css'
+        }]
+      }
+    },
+
     autoprefixer: {
       dist: {
         files: [{
           expand: true,
           cwd: '.tmp/css/',
           src: '{,*/}*.css',
-          dest: 'dist/css/'
+        dest: 'dist/css/'
         }]
       }
     },
@@ -137,62 +140,88 @@ module.exports = function(grunt) {
       }
     },
 
-      watch: {
-        html: {
-          files: ['index.html', '.plan', '.bot'],
-          options: {
-            livereload: false
-          }
-        },
-
-        scripts: {
-          files: ['js/*.js'],
-          tasks: ['concat', 'uglify', 'jshint'],
-          options: {
-            livereload: false,
-            spawn: false
-          },
-        },
-
-        css: {
-          files: ['scss/*.scss'],
-          //tasks: ['compass'],
-          options: {
-            livereload: false,
-            spawn: false
-          }
+    watch: {
+      html: {
+        files: ['index.html', '.plan', '.bot'],
+        options: {
+          livereload: false
         }
       },
 
-      targethtml: {
-        dist: {
-          files: {
-            'dist/index.html': 'index.html'
-          }
+      scripts: {
+        files: ['js/*.js'],
+        tasks: ['concat', 'uglify', 'jshint'],
+        options: {
+          livereload: false,
+          spawn: false
+        },
+      },
+
+      css: {
+        files: ['scss/*.scss'],
+        //tasks: ['compass'],
+        options: {
+          livereload: false,
+          spawn: false
         }
       }
+    },
 
-    });
+    targethtml: {
+      dist: {
+        files: {
+          'dist/index.html': 'index.html'
+        }
+      }
+    },
+    push: {
+      options: {
+        files: ['package.json'],
+        updateConfigs: [],
+        add: true,
+        addFiles: ['.'],
+        commit: true,
+        commitMessage: 'Release v%VERSION%',
+        commitFiles: ['package.json', 'dist/*'],
+        createTag: true,
+        tagName: 'v%VERSION%',
+        tagMessage: 'Version %VERSION%',
+        push: true,
+        pushTo: 'origin',
+        releaseBranch: ['master'],
+        npm: false,
+        gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d' // options to use with '$ git describe'
+      }
+    }
 
-    grunt.registerTask('build', [
-      'clean',
-      'sass',
-      'concat:css',
-      'concat:html',
-      'autoprefixer',
-      'cssmin',
-      'imagemin',
-      //'svgmin',
-      //'createDefaultTemplate',
-      //'jst',
-      'concat:js',
-      'uglify',
-      'targethtml'
-    ]);
+  });
 
-    grunt.registerTask('default', [
-      'newer:scsslint',
-      'build'
-    ]);
+  grunt.registerTask('build', [
+    'clean',
+    'sass',
+    'concat:css',
+    'concat:html',
+    'autoprefixer',
+    'cssmin',
+    //'createDefaultTemplate',
+    //'jst',
+    'concat:js',
+    'uglify',
+    'targethtml',
+    'exec:move_captures',
+    'imagemin'
+  ]);
+
+  grunt.registerTask('release', [
+    'build',
+    'exec:capture',
+    'exec:deploy',
+    'push'
+  ]);
+
+  grunt.registerTask('default', [
+    'newer:scsslint',
+    'build'
+  ]);
 
 };

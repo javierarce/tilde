@@ -1,0 +1,3 @@
+#!/bin/bash
+mkdir -p dist/captures
+cp captures/* dist/captures
