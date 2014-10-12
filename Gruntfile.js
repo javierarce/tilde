@@ -138,14 +138,15 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: {
-      html: {
-        files: ['index.html', '.plan', '.bot'],
-        options: {
-          livereload: false
+      compass: {
+        dist: {
+          options: {
+            config: 'config.rb'
+          }
         }
       },
 
+    watch: {
       scripts: {
         files: ['js/*.js'],
         tasks: ['concat', 'uglify', 'jshint'],
@@ -157,9 +158,9 @@ module.exports = function(grunt) {
 
       css: {
         files: ['scss/*.scss'],
-        //tasks: ['compass'],
+        tasks: ['sass'],
         options: {
-          livereload: false,
+          livereload: true,
           spawn: false
         }
       }
