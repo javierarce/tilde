@@ -29,6 +29,8 @@ $(function() {
     "with the help of large amounts of coffee",
     "inconspicuously",
     "in a moment of total sadness",
+    "when nobody was looking",
+    "in an act of utter desperation",
     "without paying much attention"
   ];
 
