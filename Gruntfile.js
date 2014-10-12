@@ -180,7 +180,7 @@ module.exports = function(grunt) {
         addFiles: ['.'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
-        commitFiles: ['package.json', 'dist/*'],
+        commitFiles: ['package.json', 'captures/*', 'dist/*'],
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
