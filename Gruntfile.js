@@ -206,12 +206,12 @@ module.exports = function(grunt) {
     //'jst',
     'concat:js',
     'uglify',
-    'targethtml',
-    'exec:capture',
+    'targethtml'
   ]);
 
   grunt.registerTask('release', [
     'build',
+    'exec:capture',
     'exec:deploy',
     'push'
   ]);
