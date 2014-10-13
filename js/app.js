@@ -16,9 +16,9 @@ $(function() {
 
     if (msg) {
       msg = " <small>(" + msg + ")</small>";
-      $(".nostalgia-level-msg-js").html(level + msg);
+      $(".nostalgia-level-msg-js").html("<strong>" + level + "<small>%</small></strong>" + msg);
     } else {
-      $(".nostalgia-level-msg-js").html(level);
+      $(".nostalgia-level-msg-js").html("<strong>" + level + "<small>%</small></strong>");
     }
 
   });
