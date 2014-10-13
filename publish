@@ -1,3 +1,0 @@
-#!/bin/bash
-rsync -azh dist/. javier@tilde.club:/home/javier/public_html/
-

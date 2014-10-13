@@ -39,11 +39,11 @@ module.exports = function(grunt) {
 
     exec: {
       capture: {
-        cmd: 'node capture.js',
+        cmd: 'node scripts/capture.js',
         stdout: true
       },
       deploy: {
-        cmd: 'sh publish'
+        cmd: 'sh scripts/publish'
       }
     },
 
@@ -56,7 +56,6 @@ module.exports = function(grunt) {
       },
       css: {
         src: [
-          //'scss/vendor/reset.css',
           'scss/*.scss'
         ],
         dest: 'dist/css/<%= pkg.name %>.css'
@@ -203,11 +202,13 @@ module.exports = function(grunt) {
     'autoprefixer',
     'cssmin',
     'imagemin',
-    //'createDefaultTemplate',
-    //'jst',
     'concat:js',
     'uglify',
     'targethtml'
+  ]);
+
+  grunt.registerTask('capture', [
+    'exec:capture'
   ]);
 
   grunt.registerTask('release', [
