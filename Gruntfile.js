@@ -212,8 +212,8 @@ module.exports = function(grunt) {
 
   grunt.registerTask('release', [
     'build',
-    'exec:capture',
     'exec:deploy',
+    'exec:capture',
     'push'
   ]);
 
