@@ -4,7 +4,7 @@ var date = new Date();
 
 var pageres = new Pageres({ filename: date })
 .src('tilde.club/~javier', ['1280x1024'])
-.dest("../" + __dirname + "/captures");
+.dest("captures");
 
 pageres.run(function (err) {
   if (err) {
