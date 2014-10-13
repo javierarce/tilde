@@ -1,7 +1,7 @@
 tilde
 =====
 
-The soul and bones of my [tilde.club page](tilde.club/~javier).
+The soul and bones of my [tilde.club page](http://tilde.club/~javier).
 
 ### While you are here
 
