@@ -1,5 +1,43 @@
 $(function() {
 
+  var $disparition = $(".disparition-js");
+
+  if ($disparition.length == 1) {
+    var letters = [];
+    _.each($disparition.text(), function(l) {
+      if (l == " ") {
+        letters.push(" ");
+      } else {
+        letters.push("<a href='#' data-letter='" + l + "'>" + l + "</a>");
+      }
+    });
+
+    $disparition.html(letters.join(""));
+  }
+
+  function recursiveReplace(node, letter) {
+    if (node.nodeType == 3) { // text node
+      var regEx = new RegExp(letter, "ig");
+      node.nodeValue = node.nodeValue.replace(regEx, " ");
+    } else if (node.nodeType == 1) { // element
+      $(node).contents().each(function () {
+        recursiveReplace(this, letter);
+      });
+    }
+  }
+
+
+  $(document).on("click", "a[data-letter]", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var letter = $(e.target).attr("data-letter").toLowerCase();
+    recursiveReplace(document.body, letter);
+
+    if ($disparition.text().trim().length == 0) $disparition.html("<em>Fin</em>");
+
+  })
+
   $(".nostalgia-slider-js").on("input", function() {
     var level = $(this).val();
     if (level >= 99)      msg = "you are just going to die";
