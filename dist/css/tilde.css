@@ -227,6 +227,3 @@ only screen and (-o-min-device-pixel-ratio: 2/1) {
   }
 }
 
-.disparition {
-  min-height: 30px;
-}
