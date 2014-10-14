@@ -220,5 +220,7 @@ input[type="range"]::-moz-range-thumb {
   .battery {
     background: url(../img/battery@2x.png);
     background-size: 22px 88px; } }
+span.d {
+  color: red; }
 
 /*# sourceMappingURL=app.css.map */

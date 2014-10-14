@@ -97,7 +97,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: [{
-          expand: true,
+          expand: false,
           cwd: 'scss',
           src: ['*.scss'],
           dest: 'css',
@@ -200,7 +200,7 @@ module.exports = function(grunt) {
     'concat:css',
     'concat:html',
     'autoprefixer',
-    'cssmin',
+    //'cssmin',
     'imagemin',
     'concat:js',
     'uglify',

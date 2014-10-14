@@ -15,26 +15,16 @@ $(function() {
     $disparition.html(letters.join(""));
   }
 
-  function recursiveReplace(node, letter) {
-    if (node.nodeType == 3) { // text node
-      var regEx = new RegExp(letter, "ig");
-      node.nodeValue = node.nodeValue.replace(regEx, " ");
-    } else if (node.nodeType == 1) { // element
-      $(node).contents().each(function () {
-        recursiveReplace(this, letter);
-      });
-    }
-  }
-
-
   $(document).on("click", "a[data-letter]", function(e) {
+
     e.preventDefault();
     e.stopPropagation();
 
     var letter = $(e.target).attr("data-letter").toLowerCase();
-    recursiveReplace(document.body, letter);
+    $("body").highlight( letter, { element: 'span', className: 'd' });
+    $("span.d").animate({ opacity: 0 }, 250)
 
-    if ($disparition.text().trim().length == 0) $disparition.html("<em>Fin</em>");
+    //if ($disparition.text().trim().length == 0) $disparition.html("<em>Fin</em>");
 
   })
 

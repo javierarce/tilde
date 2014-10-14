@@ -1,3 +1,4 @@
+$hola: 100px;
 body {
   margin: 0; 
   padding: 20px 20px 10px 20px;
@@ -227,3 +228,6 @@ only screen and (-o-min-device-pixel-ratio: 2/1) {
   }
 }
 
+span.d { 
+color: red;
+}
