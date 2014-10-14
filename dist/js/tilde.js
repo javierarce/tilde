@@ -224,20 +224,27 @@ $(function() {
     });
 
     $disparition.html(letters.join(""));
+
   }
 
-  $(document).on("click", "a[data-letter]", function(e) {
+  var hideLetter = function(e) {
 
     e.preventDefault();
     e.stopPropagation();
 
-    var letter = $(e.target).attr("data-letter").toLowerCase();
-    $("body").highlight( letter, { element: 'span', className: 'd' });
-    $("span.d").animate({ opacity: 0 }, 250)
+    var letter = $(e.target).attr("data-letter")
+    if (!letter) return;
 
-    //if ($disparition.text().trim().length == 0) $disparition.html("<em>Fin</em>");
+    $(this).attr("data-letter", "");
 
-  })
+    $("body").highlight(letter.toLowerCase(), { element: 'span', className:'da' });
+    $('span.da').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass(".da").addClass("ds");
+    });
+
+  }
+
+  $(document).on("click", "a[data-letter]", hideLetter);
 
   $(".nostalgia-slider-js").on("input", function() {
     var level = $(this).val();
