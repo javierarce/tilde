@@ -251,7 +251,8 @@ $(function() {
     $("body").highlight(letter, { element: 'span', className:'da' });
 
     $('span.da').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-      $(this).removeClass(".da").addClass("ds");
+      $(this).removeClass("da");
+      $(this).addClass("ds");
     });
 
     if (disparitionLetters.length == 0) {
