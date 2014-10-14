@@ -1,7 +1,22 @@
-$hola: red;
+@-webkit-keyframes disparition {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+@-moz-keyframes disparition {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+@-o-keyframes disparition {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes disparition {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
 body {
   margin: 0; 
-  background:$hola;
   padding: 20px 20px 10px 20px;
 }
 a, a:visited, a:active, a:hover { 
@@ -228,7 +243,30 @@ only screen and (-o-min-device-pixel-ratio: 2/1) {
     background-size: 22px 88px;
   }
 }
+span.da {  // disparition-animated
 
-span.d { 
-color: red;
+  -moz-animation-duration: 350ms;
+  -moz-animation-iteration-count: 1;
+  -moz-animation-name: disparition;
+  -moz-animation-timing-function: ease-in;
+
+  -webkit-animation-duration: 350ms;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-name: disparition;
+  -webkit-animation-timing-function: ease-in;
+
+  -ms-animation-duration: 350ms;
+  -ms-animation-iteration-count: 1;
+  -ms-animation-name: disparition;
+  -ms-animation-timing-function: ease-in;
+
+  animation-duration: 350ms;
+  animation-iteration-count: 1;
+  animation-name: disparition;
+  animation-timing-function: ease-in;
+
+}
+
+span.ds {  // disparition stopped
+  color:#fff;
 }

@@ -56,7 +56,7 @@ module.exports = function(grunt) {
       },
       css: {
         src: [
-          'scss/*.scss'
+          'css/*.css'
         ],
         dest: 'dist/css/<%= pkg.name %>.css'
       },
@@ -97,7 +97,7 @@ module.exports = function(grunt) {
     sass: {
       dist: {
         files: [{
-          expand: false,
+          expand: true,
           cwd: 'scss',
           src: ['*.scss'],
           dest: 'css',
@@ -108,12 +108,7 @@ module.exports = function(grunt) {
 
     autoprefixer: {
       dist: {
-        files: [{
-          expand: true,
-          cwd: '.tmp/css/',
-          src: '{,*/}*.css',
-        dest: 'dist/css/'
-        }]
+        files: [{ expand: true, cwd: 'css', src: '**/*.css', dest: 'dist/css/' }]
       }
     },
 
@@ -203,8 +198,8 @@ module.exports = function(grunt) {
     'sass',
     'concat:css',
     'concat:html',
-    'autoprefixer',
-    //'cssmin',
+    //'autoprefixer',
+    'cssmin',
     'imagemin',
     'concat:js',
     'uglify',

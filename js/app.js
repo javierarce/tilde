@@ -1,9 +1,12 @@
 $(function() {
 
   var $disparition = $(".disparition-js");
+  var disparitionLetters = ["t", "h", "e", "v", "o", "i", "d"];
 
   if ($disparition.length == 1) {
+
     var letters = [];
+
     _.each($disparition.text(), function(l) {
       if (l == " ") {
         letters.push(" ");
@@ -13,20 +16,43 @@ $(function() {
     });
 
     $disparition.html(letters.join(""));
+
   }
 
-  $(document).on("click", "a[data-letter]", function(e) {
+  var hideLetter = function(e) {
 
     e.preventDefault();
     e.stopPropagation();
 
-    var letter = $(e.target).attr("data-letter").toLowerCase();
-    $("body").highlight( letter, { element: 'span', className: 'd' });
-    $("span.d").animate({ opacity: 0 }, 250)
+    var letter = $(e.target).attr("data-letter")
+    if (!letter) return;
 
-    //if ($disparition.text().trim().length == 0) $disparition.html("<em>Fin</em>");
+    letter = letter.toLowerCase();
 
-  })
+    $(this).attr("data-letter", "");
+
+    var index = disparitionLetters.indexOf(letter);
+
+    if (index > -1) {
+      disparitionLetters.splice(index, 1);
+    }
+
+    $("body").highlight(letter, { element: 'span', className:'da' });
+
+    $('span.da').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+      $(this).removeClass(".da").addClass("ds");
+    });
+
+    if (disparitionLetters.length == 0) {
+      $disparition.fadeOut("250", function() {
+        $disparition.html("<em>F*n</em>");
+        $disparition.fadeIn(250);
+      });
+    }
+
+  }
+
+  $(document).on("click", "a[data-letter]", hideLetter);
 
   $(".nostalgia-slider-js").on("input", function() {
     var level = $(this).val();

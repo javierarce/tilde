@@ -212,9 +212,12 @@ Retina = function() {
 $(function() {
 
   var $disparition = $(".disparition-js");
+  var disparitionLetters = ["t", "h", "e", "v", "o", "i", "d"];
 
   if ($disparition.length == 1) {
+
     var letters = [];
+
     _.each($disparition.text(), function(l) {
       if (l == " ") {
         letters.push(" ");
@@ -235,12 +238,28 @@ $(function() {
     var letter = $(e.target).attr("data-letter")
     if (!letter) return;
 
+    letter = letter.toLowerCase();
+
     $(this).attr("data-letter", "");
 
-    $("body").highlight(letter.toLowerCase(), { element: 'span', className:'da' });
+    var index = disparitionLetters.indexOf(letter);
+
+    if (index > -1) {
+      disparitionLetters.splice(index, 1);
+    }
+
+    $("body").highlight(letter, { element: 'span', className:'da' });
+
     $('span.da').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
       $(this).removeClass(".da").addClass("ds");
     });
+
+    if (disparitionLetters.length == 0) {
+      $disparition.fadeOut("250", function() {
+        $disparition.html("<em>F*n</em>");
+        $disparition.fadeIn(250);
+      });
+    }
 
   }
 
