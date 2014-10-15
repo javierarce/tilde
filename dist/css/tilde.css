@@ -49,6 +49,9 @@ p {
 .u--pull-20 {
   margin-top: 20px; }
 
+.u--pull-40 {
+  margin-top: 40px; }
+
 .u--push-5 {
   margin-bottom: 5px; }
 
@@ -57,6 +60,9 @@ p {
 
 .u--push-20 {
   margin-bottom: 20px; }
+
+.u--push-40 {
+  margin-bottom: 40px; }
 
 .u--marginless {
   margin: 0; }
