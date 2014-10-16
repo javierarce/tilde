@@ -62,7 +62,11 @@ module.exports = function(grunt) {
       },
       js: {
         src: [
-          'js/vendor/*.js',
+          'js/vendor/jquery.min.js',
+          'js/vendor/underscore.min.js',
+          'js/vendor/jquery.highlight.js',
+          'js/vendor/jquery.music.snitch.js',
+          'js/vendor/retina.js',
           'js/*.js',
         ],
         dest: 'dist/js/<%= pkg.name %>.js'
