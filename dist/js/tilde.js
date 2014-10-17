@@ -295,6 +295,8 @@ $(function() {
     "inconspicuously",
     "in a moment of total sadness",
     "when nobody was looking",
+    "because it was the right thing to do",
+    "with the assumption that Nature is not grounded in anything beyond herself",
     "in an act of utter desperation",
     "without paying much attention"
   ];
