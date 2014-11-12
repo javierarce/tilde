@@ -1,4 +1,25 @@
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 $(function() {
+
+  var $walk = $(".walk-js");
+
+  $.ajax({ 
+    url: "http://monitor.javierarce.com/api/today",
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function(response) {
+
+      if (response) {
+        var data  = response[0];
+        var steps = numberWithCommas(data.steps);
+        $walk.html("Today I've walked " + steps + " steps, but I haven't gotten anywhere.");
+      }
+
+    }
+  });
 
   var $disparition = $(".disparition-js");
   var disparitionLetters = ["t", "h", "e", "v", "o", "i", "d"];
