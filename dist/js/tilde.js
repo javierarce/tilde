@@ -374,7 +374,7 @@ $(function() {
       if (response) {
         var data  = response[0];
         var steps = numberWithCommas(data.steps);
-        $walk.html("Today I've walked " + steps + " steps, but I haven't gotten anywhere.");
+        $walk.html("So far today I've walked " + steps + " steps, but I haven't gotten anywhere.");
       }
 
     }
