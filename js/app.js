@@ -5,13 +5,20 @@ function numberWithCommas(x) {
 $(function() {
 
   function handleVisibilityChange() {
+
+    var subliminalMessages = ["Pay more attention", "Do not blink", "Hello, I must be going", "You blinked, you missed it", "I'm not here", "No incoming calls accepted"];
+
     if (document[hidden]) {
       $("body").addClass("hidden");
-      $(".hidden-message-js").removeClass("u--hidden");
+      $(".subliminal-message-js").removeClass("u--hidden");
     } else {
+
+      var randomSubliminalMessage = subliminalMessages[Math.round(Math.random()*subliminalMessages.length)];
+      $(".subliminal-message-js").html(randomSubliminalMessage);
+
       setTimeout(function() {
         $("body").removeClass("hidden");
-        $(".hidden-message-js").addClass("u--hidden");
+        $(".subliminal-message-js").addClass("u--hidden");
       }, 250)
     }
   }
