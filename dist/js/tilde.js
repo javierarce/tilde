@@ -363,6 +363,35 @@ function numberWithCommas(x) {
 
 $(function() {
 
+  function handleVisibilityChange() {
+    if (document[hidden]) {
+      $("body").addClass("hidden");
+      $(".hidden-message-js").removeClass("u--hidden");
+    } else {
+      setTimeout(function() {
+        $("body").removeClass("hidden");
+        $(".hidden-message-js").addClass("u--hidden");
+      }, 250)
+    }
+  }
+
+  var hidden, visibilityChange; 
+  if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+    hidden = "hidden";
+    visibilityChange = "visibilitychange";
+  } else if (typeof document.mozHidden !== "undefined") {
+    hidden = "mozHidden";
+    visibilityChange = "mozvisibilitychange";
+  } else if (typeof document.msHidden !== "undefined") {
+    hidden = "msHidden";
+    visibilityChange = "msvisibilitychange";
+  } else if (typeof document.webkitHidden !== "undefined") {
+    hidden = "webkitHidden";
+    visibilityChange = "webkitvisibilitychange";
+  }
+
+  document.addEventListener(visibilityChange, handleVisibilityChange, false);
+
   var $checklist = $(".checklist-js");
 
   $checklist.find("li").on("click", function() {
@@ -382,7 +411,13 @@ $(function() {
       if (response) {
         var data  = response[0];
         var steps = numberWithCommas(data.steps);
-        $walk.html("So far today I've walked " + steps + " steps, but I haven't gotten anywhere.");
+
+        if (steps > 0) {
+          $walk.html("So far today I've walked " + steps + " steps, but I haven't gotten anywhere.");
+        } else {
+          $walk.html("I haven't moved yet.");
+        }
+
       }
 
     }
