@@ -40,6 +40,13 @@ p {
 .u--line-through {
   text-decoration: line-through; }
 
+.u--non-selectable {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
 .u--clickable {
   cursor: pointer; }
 
