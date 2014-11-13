@@ -53,7 +53,7 @@ $(function() {
         var data  = response[0];
         var steps = numberWithCommas(data.steps);
 
-        if (steps > 0) {
+        if (data.steps > 0) {
           $walk.html("So far today I've walked " + steps + " steps, but I haven't gotten anywhere.");
         } else {
           $walk.html("I haven't moved yet.");
