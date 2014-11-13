@@ -363,6 +363,14 @@ function numberWithCommas(x) {
 
 $(function() {
 
+  var $checklist = $(".checklist-js");
+
+  $checklist.find("li").on("click", function() {
+    var $checkbox = $(this).find("input[type='checkbox']");
+    $checkbox.attr("checked", !$checkbox.attr("checked"));
+    $(this).toggleClass("u--line-through");
+  });
+
   var $walk = $(".walk-js");
 
   $.ajax({ 

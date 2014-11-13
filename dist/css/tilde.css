@@ -37,6 +37,12 @@ p {
 .credits {
   text-align: right; }
 
+.u--line-through {
+  text-decoration: line-through; }
+
+.u--clickable {
+  cursor: pointer; }
+
 .u--italics {
   font-style: italic; }
 
@@ -295,6 +301,15 @@ table td {
 table tr td:first-child {
   width: 30px;
   text-align: center; }
+
+.checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.checklist li {
+  margin: 0;
+  padding: 0; }
 
 /*# sourceMappingURL=app.css.map */
 
