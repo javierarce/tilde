@@ -4,6 +4,45 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
+function setTildeFavicon() {
+  var link  = document.createElement('link');
+  link.type = 'image/x-icon';
+  link.rel  = 'shortcut icon';
+  link.href = 'img/favicons/tilde.png';
+
+  document.getElementsByTagName('head')[0].appendChild(link);
+  $(document).prop('title', 'Is the ~ Who Is Tall Happy?');
+}
+
+function setGmailFavicon() {
+
+      var c     = Math.round(Math.random()*13);
+      var cT    = c;
+      var link  = document.createElement('link');
+      link.type = 'image/x-icon';
+      link.rel  = 'shortcut icon';
+
+      if (c === 11) {
+        c = 50;
+        cT = "50+";
+        link.href = 'img/favicons/gmail_' + c + '.png';
+      } else if (c === 12) {
+        c = 100;
+        cT = "100+";
+        link.href = 'img/favicons/gmail_' + c + '.png';
+      } else {
+        link.href = 'img/favicons/gmail_' + c + '.png';
+      }
+
+      document.getElementsByTagName('head')[0].appendChild(link);
+
+      if (c === 0) {
+        $(document).prop('title', 'Inbox - javier@tilde.club');
+      } else {
+        $(document).prop('title', 'Inbox ('+cT+') - javier@tilde.club');
+      }
+}
+
 function initSubliminal() {
 
   function handleVisibilityChange() {
@@ -13,7 +52,12 @@ function initSubliminal() {
     if (document[hidden]) {
       $("body").addClass("hidden");
       $(".subliminal-message-js").removeClass("u--hidden");
+
+      setGmailFavicon();
+
     } else {
+
+      setTildeFavicon();
 
       var randomSubliminalMessage = subliminalMessages[Math.round(Math.random()*subliminalMessages.length)];
       $(".subliminal-message-js").html(randomSubliminalMessage);
