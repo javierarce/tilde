@@ -1,8 +1,10 @@
+var myUsername = "javier";
+
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-$(function() {
+function initSubliminal() {
 
   function handleVisibilityChange() {
 
@@ -19,7 +21,7 @@ $(function() {
       setTimeout(function() {
         $("body").removeClass("hidden");
         $(".subliminal-message-js").addClass("u--hidden");
-      }, 250)
+      }, 250);
     }
   }
 
@@ -40,36 +42,106 @@ $(function() {
 
   document.addEventListener(visibilityChange, handleVisibilityChange, false);
 
-  var $checklist = $(".checklist-js");
 
-  $checklist.find("li").on("click", function() {
-    var $checkbox = $(this).find("input[type='checkbox']");
-    $checkbox.attr("checked", !$checkbox.attr("checked"));
-    $(this).toggleClass("u--line-through");
-  });
+}
 
-  var $walk = $(".walk-js");
+function initAmIOnline() {
 
-  $.ajax({ 
-    url: "http://monitor.javierarce.com/api/today",
-    jsonp: "callback",
-    dataType: "jsonp",
-    success: function(response) {
+  $.ajax({ url: "http://tilde.club/~gabriel/who.json", success: function(data) {
+    var online = false;
 
-      if (response) {
-        var data  = response[0];
-        var steps = numberWithCommas(data.steps);
-
-        if (data.steps > 0) {
-          $walk.html("So far today I've walked " + steps + " steps, but I haven't gotten anywhere.");
-        } else {
-          $walk.html("I haven't moved yet.");
-        }
-
+    $.each(data.online, function(i, username) { 
+      if (username === myUsername) { 
+        online = true; 
       }
+    });
 
+    if (online) $(".online-status-js").removeClass("u--hidden");
+
+  }});
+
+
+}
+
+function initUpdatedAt() {
+
+  $.ajax({ url: "http://tilde.club/~delfuego/tilde.24h.json", success: function(data) {
+
+    var modtime;
+
+    $.each(data.pagelist, function(i, user) { 
+      if (user.username === myUsername) { 
+        modtime = user.modtime; 
+      }
+    });
+
+    if (modtime) {
+      var date = new Date(modtime);
+      $(".updated-at-js").html("on " + date.toString());
     }
+
+  }});
+
+}
+
+function initMusicSnitch() {
+
+  $(".listening-js").snitch({
+    username: "javierarce",
+    api_key: "52baf5483029010e0e7ece53ac76449e" 
+  }).on("listening", function(e, track) {
+    $(".listening-js").removeClass("u--hidden");
   });
+
+
+}
+
+function initMoments() {
+
+  var moments = [
+    "with the help of large amounts of coffee",
+    "inconspicuously",
+    "in a moment of total sadness",
+    "when nobody was looking",
+    "because it was the right thing to do",
+    "with the assumption that Nature is not grounded in anything beyond herself",
+    "in an act of utter desperation",
+    "without paying much attention"
+  ];
+
+  var randomMoment = moments[Math.round(Math.random()*moments.length)];
+  $(".random-update-moment-js").text(randomMoment);
+
+}
+
+function initNostalgia() {
+
+  $(".nostalgia-slider-js").on("input", function() {
+    var level = $(this).val();
+    if (level >= 99)      msg = "you are just going to die";
+    else if (level >= 95) msg = "what are you doing?";
+    else if (level >= 90) msg = "watch out";
+    else if (level >= 80) msg = "you don't want to do that";
+    else if (level >= 75) msg = "haha… wait!";
+    else if (level >= 70) msg = "haha";
+    else if (level <= 5)  msg = "you insensible machine";
+    else if (level <= 10) msg = "c'mon!";
+    else if (level <= 20) msg = "what?";
+    else if (level <= 30) msg = "mmm";
+    else msg = "";
+
+    if (msg) {
+      msg = " <small>(" + msg + ")</small>";
+      $(".nostalgia-level-msg-js").html("<strong>" + level + "<small>%</small></strong>" + msg);
+    } else {
+      $(".nostalgia-level-msg-js").html("<strong>" + level + "<small>%</small></strong>");
+    }
+
+  });
+
+}
+
+function initDisparition() {
 
   var $disparition = $(".disparition-js");
   var disparitionLetters = ["t", "h", "e", "v", "o", "i", "d"];
@@ -95,7 +167,7 @@ $(function() {
     e.preventDefault();
     e.stopPropagation();
 
-    var letter = $(e.target).attr("data-letter")
+    var letter = $(e.target).attr("data-letter");
     if (!letter) return;
 
     letter = letter.toLowerCase();
@@ -114,95 +186,72 @@ $(function() {
       $(this).removeClass(".da").addClass("ds");
     });
 
-    if (disparitionLetters.length == 0) {
+    if (disparitionLetters.length === 0) {
       $disparition.fadeOut("250", function() {
         $disparition.html("<em>F*n</em>");
         $disparition.fadeIn(250);
       });
     }
 
-  }
+  };
 
   $(document).on("click", "a[data-letter]", hideLetter);
 
-  $(".nostalgia-slider-js").on("input", function() {
-    var level = $(this).val();
-    if (level >= 99)      msg = "you are just going to die";
-    else if (level >= 95) msg = "what are you doing?";
-    else if (level >= 90) msg = "watch out";
-    else if (level >= 80) msg = "you don't want to do that";
-    else if (level >= 75) msg = "haha… wait!";
-    else if (level >= 70) msg = "haha";
-    else if (level <= 5)  msg = "you insensible machine";
-    else if (level <= 10) msg = "c'mon!";
-    else if (level <= 20) msg = "what?";
-    else if (level <= 30) msg = "mmm";
-    else msg = "";
+}
 
-    if (msg) {
-      msg = " <small>(" + msg + ")</small>";
-      $(".nostalgia-level-msg-js").html("<strong>" + level + "<small>%</small></strong>" + msg);
-    } else {
-      $(".nostalgia-level-msg-js").html("<strong>" + level + "<small>%</small></strong>");
+function initWalk() {
+
+  var $walk = $(".walk-js");
+
+  $.ajax({ 
+    url: "http://monitor.javierarce.com/api/today",
+    jsonp: "callback",
+    dataType: "jsonp",
+    success: function(response) {
+
+      if (response) {
+        var data  = response[0];
+        var steps = numberWithCommas(data.steps);
+
+        if (data.steps > 0) {
+          $walk.html("So far today I've walked " + steps + " steps, but I haven't gotten anywhere.");
+        } else {
+          $walk.html("I haven't moved yet.");
+        }
+
+      }
+
     }
-
   });
 
-  var myUsername = "javier";
+}
 
-  var moments = [
-    "with the help of large amounts of coffee",
-    "inconspicuously",
-    "in a moment of total sadness",
-    "when nobody was looking",
-    "because it was the right thing to do",
-    "with the assumption that Nature is not grounded in anything beyond herself",
-    "in an act of utter desperation",
-    "without paying much attention"
-  ];
+function initCheckList() {
 
-  var randomMoment = moments[Math.round(Math.random()*moments.length)];
-  $(".random-update-moment-js").text(randomMoment)
+  var $checklist = $(".checklist-js");
+
+  $checklist.find("li").on("click", function() {
+    var $checkbox = $(this).find("input[type='checkbox']");
+    $checkbox.attr("checked", !$checkbox.attr("checked"));
+    $(this).toggleClass("u--line-through");
+  });
+
+}
+
+
+$(function() {
+
+  initSubliminal();
+  initCheckList();
+  initWalk();
+  initDisparition();
+  initNostalgia();
+  initMoments();
+  initMusicSnitch();
+  initUpdatedAt();
+  initAmIOnline();
 
   Retina.init();
-
-  $(".listening-js").snitch({
-    username: "javierarce",
-    api_key: "52baf5483029010e0e7ece53ac76449e" 
-  }).on("listening", function(e, track) {
-    $(".listening-js").removeClass("u--hidden");
-  });
-
-
-  $.ajax({ url: "http://tilde.club/~delfuego/tilde.24h.json", success: function(data) {
-
-    var modtime;
-
-    $.each(data.pagelist, function(i, user) { 
-      if (user.username === myUsername) { 
-        modtime = user.modtime; 
-      }
-    });
-
-    if (modtime) {
-      var date = new Date(modtime);
-      $(".updated-at-js").html("on " + date.toString());
-    }
-
-  }});
-
-  $.ajax({ url: "http://tilde.club/~gabriel/who.json", success: function(data) {
-    var online = false;
-
-    $.each(data.online, function(i, username) { 
-      if (username === myUsername) { 
-        online = true; 
-      }
-    });
-
-    if (online) $(".online-status-js").removeClass("u--hidden");
-
-  }});
 
 });
 
