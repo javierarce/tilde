@@ -5,30 +5,31 @@ function numberWithCommas(x) {
 }
 
 function setTildeFavicon() {
-  var randomString = "?" + Math.round(Math.random() * 10000);
+  var randomString = "?v=" + Math.round(Math.random() * 10000000);
 
   var link  = document.createElement('link');
   link.type = 'image/x-icon';
   link.rel  = 'shortcut icon';
-  link.href = 'img/favicons/tilde.png' + randomString;
+  link.href = 'http://tilde.club/~javier/img/favicons/tilde.png' + randomString;
 
+  console.log(link)
   document.getElementsByTagName('head')[0].appendChild(link);
   $(document).prop('title', 'Is the ~ Who Is Tall Happy?');
 }
 
 function setGmailFavicon() {
 
-  var c     = Math.round(Math.random()*13);
+  var c     = Math.round(Math.random()*12);
   var cT    = c;
   var link  = document.createElement('link');
-  var randomString = "?" + Math.round(Math.random() * 10000);
+  var randomString = "?v=" + Math.round(Math.random() * 10000000);
   link.type = 'image/x-icon';
   link.rel  = 'shortcut icon';
 
   if (c === 11) {
     c = 50;
     cT = "50+";
-    link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
+    link.href = 'http://tilde.club/~javier/img/favicons/gmail_' + c + '.png' + randomString;
   } else if (c === 12) {
     c = 100;
     cT = "100+";
@@ -36,6 +37,8 @@ function setGmailFavicon() {
   } else {
     link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
   }
+
+  console.log(link)
 
   document.getElementsByTagName('head')[0].appendChild(link);
 
