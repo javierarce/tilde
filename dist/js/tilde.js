@@ -360,11 +360,11 @@ Retina = function() {
 var myUsername = "javier";
 
 function numberWithCommas(x) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 function setTildeFavicon() {
-  var randomString = "?" + Math.round(Math.random(10000));
+  var randomString = "?" + Math.round(Math.random() * 10000);
 
   var link  = document.createElement('link');
   link.type = 'image/x-icon';
@@ -377,32 +377,32 @@ function setTildeFavicon() {
 
 function setGmailFavicon() {
 
-      var c     = Math.round(Math.random()*13);
-      var cT    = c;
-      var link  = document.createElement('link');
-      var randomString = "?" + Math.round(Math.random(10000));
-      link.type = 'image/x-icon';
-      link.rel  = 'shortcut icon';
+  var c     = Math.round(Math.random()*13);
+  var cT    = c;
+  var link  = document.createElement('link');
+  var randomString = "?" + Math.round(Math.random() * 10000);
+  link.type = 'image/x-icon';
+  link.rel  = 'shortcut icon';
 
-      if (c === 11) {
-        c = 50;
-        cT = "50+";
-        link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
-      } else if (c === 12) {
-        c = 100;
-        cT = "100+";
-        link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
-      } else {
-        link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
-      }
+  if (c === 11) {
+    c = 50;
+    cT = "50+";
+    link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
+  } else if (c === 12) {
+    c = 100;
+    cT = "100+";
+    link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
+  } else {
+    link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
+  }
 
-      document.getElementsByTagName('head')[0].appendChild(link);
+  document.getElementsByTagName('head')[0].appendChild(link);
 
-      if (c === 0) {
-        $(document).prop('title', 'Inbox - javier@tilde.club');
-      } else {
-        $(document).prop('title', 'Inbox ('+cT+') - javier@tilde.club');
-      }
+  if (c === 0) {
+    $(document).prop('title', 'Inbox - javier@tilde.club');
+  } else {
+    $(document).prop('title', 'Inbox ('+cT+') - javier@tilde.club');
+  }
 }
 
 function initSubliminal() {
