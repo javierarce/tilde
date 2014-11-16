@@ -281,7 +281,7 @@ function initWalk() {
         var steps = numberWithCommas(data.steps);
 
         if (data.steps > 0) {
-          $walk.html("So far today I've walked " + steps + " steps, but I haven't gotten anywhere.");
+          $walk.html("So far today I've walked <strong>" + steps + "</strong> steps, but I haven't gotten anywhere.");
         } else {
           $walk.html("I haven't moved yet.");
         }
