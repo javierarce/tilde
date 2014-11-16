@@ -371,6 +371,7 @@ function setTildeFavicon() {
   link.rel  = 'shortcut icon';
   link.href = 'http://tilde.club/~javier/img/favicons/tilde.ico' + randomString;
 
+  $("head").find("[rel='shortcut icon']").remove();
   document.getElementsByTagName('head')[0].appendChild(link);
   $(document).prop('title', 'Is the ~ Who Is Tall Happy?');
 }
@@ -396,7 +397,7 @@ function setGmailFavicon() {
     link.href = 'img/favicons/gmail_' + c + '.ico' + randomString;
   }
 
-
+  $("head").find("[rel='shortcut icon']").remove();
   document.getElementsByTagName('head')[0].appendChild(link);
 
   if (c === 0) {
