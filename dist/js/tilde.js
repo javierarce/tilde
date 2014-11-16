@@ -369,7 +369,7 @@ function setTildeFavicon() {
   var link  = document.createElement('link');
   link.type = 'image/x-icon';
   link.rel  = 'shortcut icon';
-  link.href = 'http://tilde.club/~javier/img/favicons/tilde.png' + randomString;
+  link.href = 'http://tilde.club/~javier/img/favicons/tilde.ico' + randomString;
 
   document.getElementsByTagName('head')[0].appendChild(link);
   $(document).prop('title', 'Is the ~ Who Is Tall Happy?');
@@ -387,13 +387,13 @@ function setGmailFavicon() {
   if (c === 11) {
     c = 50;
     cT = "50+";
-    link.href = 'http://tilde.club/~javier/img/favicons/gmail_' + c + '.png' + randomString;
+    link.href = 'http://tilde.club/~javier/img/favicons/gmail_' + c + '.ico' + randomString;
   } else if (c === 12) {
     c = 100;
     cT = "100+";
-    link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
+    link.href = 'img/favicons/gmail_' + c + '.ico' + randomString;
   } else {
-    link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
+    link.href = 'img/favicons/gmail_' + c + '.ico' + randomString;
   }
 
 
