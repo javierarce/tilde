@@ -371,7 +371,6 @@ function setTildeFavicon() {
   link.rel  = 'shortcut icon';
   link.href = 'http://tilde.club/~javier/img/favicons/tilde.png' + randomString;
 
-  console.log(link)
   document.getElementsByTagName('head')[0].appendChild(link);
   $(document).prop('title', 'Is the ~ Who Is Tall Happy?');
 }
@@ -397,7 +396,6 @@ function setGmailFavicon() {
     link.href = 'img/favicons/gmail_' + c + '.png' + randomString;
   }
 
-  console.log(link)
 
   document.getElementsByTagName('head')[0].appendChild(link);
 
@@ -424,7 +422,7 @@ function initSubliminal() {
 
       setTildeFavicon();
 
-      var randomSubliminalMessage = subliminalMessages[Math.round(Math.random()*subliminalMessages.length)];
+      var randomSubliminalMessage = subliminalMessages[Math.round(Math.random()*(subliminalMessages.length - 1))];
       $(".subliminal-message-js").html(randomSubliminalMessage);
 
       setTimeout(function() {
@@ -450,6 +448,25 @@ function initSubliminal() {
   }
 
   document.addEventListener(visibilityChange, handleVisibilityChange, false);
+
+
+}
+
+function initQR() {
+  $qr = $(".qr-js");
+
+  var messages = [
+    "http://en.wikipedia.org/wiki/Steganography",
+    "http://en.wikipedia.org/wiki/Canary_trap",
+    "http://en.wikipedia.org/wiki/Japanese_cryptology_from_the_1500s_to_Meiji",
+    "http://en.wikipedia.org/wiki/Nihilist_cipher"
+  ];
+
+  var text = messages[Math.round(Math.random() * (messages.length - 1))];
+
+  var src = "http://chart.apis.google.com/chart?cht=qr&chs=200x200&chl=" + text + "&chld=H|0";
+
+  $qr.find("img").attr("src", src);
 
 
 }
@@ -518,7 +535,7 @@ function initMoments() {
     "without paying much attention"
   ];
 
-  var randomMoment = moments[Math.round(Math.random()*moments.length)];
+  var randomMoment = moments[Math.round(Math.random()* (moments.length - 1))];
   $(".random-update-moment-js").text(randomMoment);
 
 }
@@ -659,6 +676,7 @@ $(function() {
   initMusicSnitch();
   initUpdatedAt();
   initAmIOnline();
+  initQR();
 
   Retina.init();
 
