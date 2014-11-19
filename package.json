@@ -16,6 +16,7 @@
     "grunt-contrib-jst": "^0.6.0",
     "grunt-contrib-sass": "~0.7.3",
     "grunt-contrib-uglify": "~0.4.0",
+    "grunt-browserify": "~3.2.0",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-exec": "*",
     "grunt-html": "^1.4.0",
