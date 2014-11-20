@@ -5,7 +5,6 @@
     <title>Is the ~ Who Is Tall Happy?</title>
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
     <meta name="viewport" content="width=device-width">
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
     <!--(if target dev)><!-->
     <script src="js/vendor/jquery.min.js"></script>
     <script src="js/vendor/underscore.min.js"></script>
@@ -70,6 +69,16 @@
           <small>If you are interested in any of these positions, please <a href="http://twitter.com/javier">send us an email</a>.</small>
         </p>
 
+        <form action="http://localhost:9292/pay" method="POST">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_TUzxhkIWLFJLEYR6CcJbthNkLbXix"
+            data-amount="100"
+            data-name="Electronic Email Machinette"
+            data-description="Thanks"
+            data-image="/128x128.png">
+          </script>
+        </form>
 
         <div class="separator"></div>
 
