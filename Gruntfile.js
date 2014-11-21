@@ -142,13 +142,21 @@ module.exports = function(grunt) {
       }
     },
 
-      compass: {
-        dist: {
-          options: {
-            config: 'config.rb'
-          }
+    compass: {
+      dist: {
+        options: {
+          config: 'config.rb'
         }
+      }
+    },
+
+    copy: {
+      main: {
+        files: [
+          { expand: true, src: ['downloads/**'], dest: 'dist/' }
+        ]
       },
+    },
 
     watch: {
       scripts: {
@@ -213,7 +221,9 @@ module.exports = function(grunt) {
     'imagemin',
     'concat:js',
     'uglify',
-    'targethtml'
+    'targethtml',
+    'exec:mobi',
+    'copy'
   ]);
 
   grunt.registerTask('mobi', [
@@ -228,7 +238,6 @@ module.exports = function(grunt) {
     'build',
     'exec:deploy',
     'exec:capture',
-    'exec:mobi',
     'push'
   ]);
 
