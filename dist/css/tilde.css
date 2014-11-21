@@ -388,7 +388,8 @@ table tr td:first-child {
   opacity: 1;
   -webkit-animation: blink 0.9s infinite;
   -moz-animation: blink 0.9s infinite;
-  animation: blink 0.9s infinite; }
+  animation: blink 0.9s infinite;
+  vertical-align: middle; }
 
 /*# sourceMappingURL=app.css.map */
 
