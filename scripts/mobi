@@ -1,0 +1,3 @@
+#!/bin/bash
+scripts/kindlegen index.html -o tilde.mobi
+mv tilde.mobi downloads

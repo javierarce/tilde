@@ -38,6 +38,10 @@ module.exports = function(grunt) {
     },
 
     exec: {
+      mobi: {
+        cmd: 'sh scripts/mobi',
+        stdout: true
+      },
       capture: {
         cmd: 'node scripts/capture.js',
         stdout: true
@@ -210,6 +214,10 @@ module.exports = function(grunt) {
     'concat:js',
     'uglify',
     'targethtml'
+  ]);
+
+  grunt.registerTask('mobi', [
+    'exec:mobi'
   ]);
 
   grunt.registerTask('capture', [
