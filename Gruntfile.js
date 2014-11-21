@@ -185,7 +185,7 @@ module.exports = function(grunt) {
         addFiles: ['.'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
-        commitFiles: ['package.json', 'captures/*', 'dist/*'],
+        commitFiles: ['package.json', 'captures/*', 'downloads/*', 'dist/*'],
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
@@ -228,6 +228,7 @@ module.exports = function(grunt) {
     'build',
     'exec:deploy',
     'exec:capture',
+    'exec:mobi',
     'push'
   ]);
 
