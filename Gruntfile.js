@@ -66,6 +66,7 @@ module.exports = function(grunt) {
           'js/vendor/underscore.min.js',
           'js/vendor/jquery.highlight.js',
           'js/vendor/jquery.music.snitch.js',
+          'js/vendor/typed.js',
           'js/vendor/vem.js',
           'js/vendor/retina.js',
           'js/*.js',

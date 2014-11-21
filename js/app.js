@@ -306,6 +306,14 @@ function initCheckList() {
 
 }
 
+function initType() {
+
+  $(".js-type").typed({
+    strings: ["If you are^300 reading this,^700 the mirrors are working^700."],
+    typeSpeed: 20
+  });
+
+}
 
 $(function() {
 
@@ -319,6 +327,7 @@ $(function() {
   initUpdatedAt();
   initAmIOnline();
   initQR();
+  initType();
 
   Retina.init();
 
