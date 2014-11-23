@@ -72,16 +72,59 @@
         <div class="separator"></div>
         <div class="emm js-emm">
 
-        <h3 class="u--centered u--pull-20 u--push-20">Electronic Mail Machinette</h3>
-          <div class="textarea-field">
-            <textarea></textarea>
-          </div>
-        <form action="http://pay.javierarce.com/pay" method="POST" class="u--align-right">
+        <h3 class="u--centered u--pull-20">Electronic Mail Machinette</h3>
 
-          <input type="hidden" name="stripeToken" value="" />
-          <a href="#" class="send-button js-emm-send">Send <span class="js-cost"></span></a>
-        </form>
+        <div class="js-emm-help u--hidden">
+        <p class="u--centered"><small>&mdash; Frequently Asked Questions &mdash;</small></p>
+          <div class="faq-list">
+            <ul>
+              <li>
+                <p><strong>Q</strong>: <strong>What is this?</strong></p>
+                <p><strong>A</strong>: This is a contact form that charges a tiny amount of money depending of the number of characters you want to send. It's free for the first 140 characters.</p>
+              </li>
+              <li>
+                <p><strong>Q</strong>: <strong>Is this for real?</strong></p>
+                <p><strong>A</strong>: Yes.</p>
+              </li>
+              <li>
+                <p><strong>Q</strong>: <strong>We are suppose to enter our credit card number… is it safe?</strong></p>
+                <p><strong>A</strong>: I'm using <a href="http://stripe.com">Stripe</a> to handle the payment. I don't have access to or store your credit card information.</p>
+              </li>
+              <li>
+                <p><strong>Q</strong>: <strong>Why are you doing this?</strong></p>
+                <p><strong>A</strong>: This is just a way to allow people to support this page.</p>
+              </li>
+              <li>
+                <p><strong>Q</strong>: <strong>What do you plan to do with the money?</strong></p>
+                <p><strong>A</strong>: Since I work on this page from a nice café every morning (Toma Café, in Madrid), I'll use the money to buy me some coffee.</p>
+              </li>
+            </ul>
+            <a href="#" class="close js-emm-button-close-help">Go back</a>
+          </div>
         </div>
+
+        <div class="success-message js-emm-success u--hidden">
+          <p class="u--centered u--pull-20">
+            Thanks a lot for your message!
+            <a href="#" class="close js-emm-button-close-success">Send another one.</a>
+          </p>
+        </div>
+
+        <form action="http://pay.javierarce.com/pay" method="POST">
+          <p class="u--centered"><small>&mdash; Contact form. A small fee may apply. <a href="#" class="js-emm-button-help">FAQ</a>. &mdash;</small></p>
+          <input type="hidden" name="stripeToken" value="" />
+          <div class="textarea-field">
+            <textarea name="message" placeholder="your message"></textarea>
+          </div>
+          <div class="text-field u--hidden">
+            <input type="text" name="from" placeholder="your email or name or nickname" />
+          </div>
+          <div class="checkbox-field js-checkbox-field u--hidden">
+            <input type="checkbox" name="rights" value="" /> you can publish this message.
+          </div>
+          <a href="#" class="send-button js-emm-send">Send message <span class="js-cost"></span></a>
+        </form>
+      </div>
 
         <div class="separator"></div>
 

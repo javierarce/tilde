@@ -1,5 +1,12 @@
 var myUsername = "javier";
 
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+  results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
@@ -298,72 +305,148 @@ function initCheckList() {
 
   var $checklist = $(".checklist-js");
 
-  $checklist.find("li").on("click", function() {
-    var $checkbox = $(this).find("input[type='checkbox']");
-    $checkbox.attr("checked", !$checkbox.attr("checked"));
+  $checklist.find("li").on("click", function(e) {
+    if ($(e.target).attr("type") !== "checkbox") {
+      var $checkbox = $(this).find("input[type='checkbox']");
+      $checkbox.attr("checked", !$checkbox.attr("checked"));
+    }
     $(this).toggleClass("u--line-through");
+
   });
 
 }
 
 function initEMM() {
 
-  $(window).on('popstate', function() {
-    handler.close();
-  });
-
-  var $sendButton = $('.js-emm-send');
-
-  var handler = StripeCheckout.configure({
-    key: 'pk_TUzxhkIWLFJLEYR6CcJbthNkLbXix',
-    image: '/square-image.png',
-    token: function(token) {
-      $(".js-emm form input[name='stripeToken'").val(token.id)
-      $(".js-emm form").submit();
-    }});
+  var stripeHandler = {};
+  var $emm          = $(".js-emm");
+  var $form         = $emm.find("form");
+  var $textarea     = $emm.find("textarea");
+  var $sendButton   = $emm.find('.js-emm-send');
 
   var amount = 0;
   var count  = 0;
 
+  $(window).on('popstate', function() {
+    stripeHandler.close();
+  });
+
+  var calculateAmount = function(c) {
+
+    var amount = 0;
+
+    if (c > 140 && c <= 144) { 
+      amount = .5;
+    } else if (c > 144) { // regular fee
+      var cents = parseFloat((c * .10/100) + .4);
+      amount = Math.floor(cents * 100) / 100;
+    }
+
+    if (amount > 0 && amount < .5) amount = .5;
+    if (amount > 3) amount = 3;
+
+    return amount;
+
+  }
+
+  stripeHandler = StripeCheckout.configure({
+    key: 'pk_TUzxhkIWLFJLEYR6CcJbthNkLbXix',
+    image: '/square-image.png',
+    currency: "EUR",
+    token: function(token) {
+      $form.find("input[name='stripeToken'").val(token.id);
+      $form.submit();
+    }
+  });
+
+  var emm = getParameterByName('emm');
+
+  if (emm === 'success') {
+    $(".js-emm form").hide();
+    $(".js-emm .js-emm-success").removeClass("u--hidden");
+    setTimeout(function() {
+      $("body").animate({ scrollTop: $(".js-emm-success").position().top - 50 }, 250);
+    }, 1500);
+  }
+
+  $(".js-emm .js-emm-button-close-success").on('click', function(e) {
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    $(".js-emm .js-emm-success").addClass("u--hidden");
+    $(".js-emm form").show();
+
+  });
+
+  $(".js-emm .js-emm-button-close-help").on('click', function(e) {
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    $(".js-emm .js-emm-help").addClass("u--hidden");
+    $(".js-emm form").show();
+
+  });
+
+  $(".js-emm .js-emm-button-help").on('click', function(e) {
+
+    e.stopPropagation();
+    e.preventDefault();
+
+    $(".js-emm form").hide();
+    $(".js-emm .js-emm-help").removeClass("u--hidden");
+
+  });
+
   $sendButton.on('click', function(e) {
 
-    handler.open({
-      name: 'Electronic Mail Machinete',
-      description: 'A message of ' + count + ' characters',
-      amount: amount * 100
-    });
+    var amount = calculateAmount($textarea.val().length);
+
+    if (amount) {
+      stripeHandler.open({
+        name: 'Electronic Mail Machinete',
+        description: 'A ' + count + ' character message',
+        amount: (amount * 100).toFixed(3)
+      });
+    } else {
+      $form.submit();
+    }
 
     e.stopPropagation();
     e.preventDefault();
 
   });
 
-  $emm = $(".js-emm");
-  $textarea = $emm.find("textarea");
-  $count = $emm.find(".count");
-  $form = $emm.find("form");
+  $(".js-checkbox-field").on("click", function(e) {
+    var $checkbox = $(this).find("input[type='checkbox']");
+    if ($(e.target).attr("type") !== "checkbox") {
+      $checkbox.attr("checked", !$checkbox.attr("checked"));
+    } else {
+      $checkbox.attr("checked", $checkbox.attr("checked") ? "checked" : null);
+    }
+    $checkbox.attr("value", $checkbox.attr("checked") ? "checked" : "" );
+  });
 
   $textarea.on("keyup", function() {
     count = $(this).val().length;
-    if (count > 50 && count < 100) {
-      amount = .5;
-    } else if (count > 100) {
-      amount = parseFloat((count * 0.07/100) + .5).toFixed(2);
-    } else {
-      amount = 0;
-    }
+    var $cost = $sendButton.find(".js-cost");
+
+    amount = calculateAmount(count);
 
     if (amount) {
-      $sendButton.find(".js-cost").text("($"+ amount + ")");
-      $sendButton.find(".js-cost").stop().show();
-      $sendButton.find(".js-cost").stop().animate({ opacity: 1 }, 150)
-    }
-    else {
-      $sendButton.find(".js-cost").stop().animate({ opacity: 0 }, { duration: 150, complete: function() {
-        $sendButton.find(".js-cost").hide();
+      $cost.text("("+ amount + "€)");
+      $cost.stop().show();
+      $cost.stop().animate({ opacity: 1 }, 100);
+      $(".js-emm .text-field").removeClass("u--hidden");
+      $(".js-emm .checkbox-field").removeClass("u--hidden");
+    } else {
+      $cost.stop().animate({ opacity: 0 }, { duration: 100, complete: function() {
+        $(".js-emm .text-field").addClass("u--hidden");
+        $(".js-emm .checkbox-field").addClass("u--hidden");
+        $cost.hide();
       }});
     }
-
   });
 }
 
