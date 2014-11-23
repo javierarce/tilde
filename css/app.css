@@ -1,3 +1,24 @@
+@keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@-moz-keyframes blink {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
 @-webkit-keyframes disparition {
   0% {
     opacity: 1; }
@@ -384,12 +405,27 @@ table tr td:first-child {
     display: table;
     clear: both; }
 
-.emm .count {
+.emm .send-button {
+  display: block;
   float: right;
-  margin: 20px 20px 0 0; }
+  padding: 8px 10px;
+  background: #000;
+  color: #fff;
+  text-decoration: none; }
 
-.emm form {
-  float: right;
-  margin: 10px 0 0 0; }
+.emm .send-button:hover {
+  text-decoration: underline; }
+
+.emm .send-button span {
+  display: none;
+  opacity: 0;
+  font-size: small; }
+
+.typed-cursor {
+  opacity: 1;
+  -webkit-animation: blink 0.9s infinite;
+  -moz-animation: blink 0.9s infinite;
+  animation: blink 0.9s infinite;
+  vertical-align: middle; }
 
 /*# sourceMappingURL=app.css.map */

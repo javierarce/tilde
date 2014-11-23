@@ -38,6 +38,10 @@ module.exports = function(grunt) {
     },
 
     exec: {
+      mobi: {
+        cmd: 'sh scripts/mobi',
+        stdout: true
+      },
       capture: {
         cmd: 'node scripts/capture.js',
         stdout: true
@@ -66,6 +70,7 @@ module.exports = function(grunt) {
           'js/vendor/underscore.min.js',
           'js/vendor/jquery.highlight.js',
           'js/vendor/jquery.music.snitch.js',
+          'js/vendor/typed.js',
           'js/vendor/vem.js',
           'js/vendor/retina.js',
           'js/*.js',
@@ -137,13 +142,21 @@ module.exports = function(grunt) {
       }
     },
 
-      compass: {
-        dist: {
-          options: {
-            config: 'config.rb'
-          }
+    compass: {
+      dist: {
+        options: {
+          config: 'config.rb'
         }
+      }
+    },
+
+    copy: {
+      main: {
+        files: [
+          { expand: true, src: ['downloads/**'], dest: 'dist/' }
+        ]
       },
+    },
 
     watch: {
       scripts: {
@@ -180,7 +193,7 @@ module.exports = function(grunt) {
         addFiles: ['.'],
         commit: true,
         commitMessage: 'Release v%VERSION%',
-        commitFiles: ['package.json', 'captures/*', 'dist/*'],
+        commitFiles: ['package.json', 'captures/*', 'downloads/*', 'dist/*'],
         createTag: true,
         tagName: 'v%VERSION%',
         tagMessage: 'Version %VERSION%',
@@ -208,7 +221,13 @@ module.exports = function(grunt) {
     'imagemin',
     'concat:js',
     'uglify',
-    'targethtml'
+    'targethtml',
+    'exec:mobi',
+    'copy'
+  ]);
+
+  grunt.registerTask('mobi', [
+    'exec:mobi'
   ]);
 
   grunt.registerTask('capture', [

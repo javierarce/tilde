@@ -308,19 +308,71 @@ function initCheckList() {
 
 function initEMM() {
 
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+
+  var $sendButton = $('.js-emm-send');
+
+  var handler = StripeCheckout.configure({
+    key: 'pk_TUzxhkIWLFJLEYR6CcJbthNkLbXix',
+    image: '/square-image.png',
+    token: function(token) {
+      $(".js-emm form input[name='stripeToken'").val(token.id)
+      $(".js-emm form").submit();
+    }});
+
+  var amount = 0;
+  var count  = 0;
+
+  $sendButton.on('click', function(e) {
+
+    handler.open({
+      name: 'Electronic Mail Machinete',
+      description: 'A message of ' + count + ' characters',
+      amount: amount * 100
+    });
+
+    e.stopPropagation();
+    e.preventDefault();
+
+  });
+
   $emm = $(".js-emm");
   $textarea = $emm.find("textarea");
   $count = $emm.find(".count");
   $form = $emm.find("form");
 
   $textarea.on("keyup", function() {
-    var count = $(this).val().length;
-    if (count > 10) {
-      $form.find("span").text("Pay " + count + "€")
-      $form.attr("data-amount", count)
+    count = $(this).val().length;
+    if (count > 50 && count < 100) {
+      amount = .5;
+    } else if (count > 100) {
+      amount = parseFloat((count * 0.07/100) + .5).toFixed(2);
+    } else {
+      amount = 0;
     }
-    $count.text(count);
-  })
+
+    if (amount) {
+      $sendButton.find(".js-cost").text("($"+ amount + ")");
+      $sendButton.find(".js-cost").stop().show();
+      $sendButton.find(".js-cost").stop().animate({ opacity: 1 }, 150)
+    }
+    else {
+      $sendButton.find(".js-cost").stop().animate({ opacity: 0 }, { duration: 150, complete: function() {
+        $sendButton.find(".js-cost").hide();
+      }});
+    }
+
+  });
+}
+
+function initType() {
+
+  $(".js-type").typed({
+    strings: ["If you are^300 reading this,^700 the mirrors are working^700."],
+    typeSpeed: 20
+  });
 
 }
 
@@ -337,6 +389,7 @@ $(function() {
   initAmIOnline();
   initQR();
   initEMM();
+  initType();
 
   Retina.init();
 
