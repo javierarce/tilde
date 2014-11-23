@@ -300,10 +300,13 @@ function initCheckList() {
 
   var $checklist = $(".checklist-js");
 
-  $checklist.find("li").on("click", function() {
-    var $checkbox = $(this).find("input[type='checkbox']");
-    $checkbox.attr("checked", !$checkbox.attr("checked"));
+  $checklist.find("li").on("click", function(e) {
+    if ($(e.target).attr("type") !== "checkbox") {
+      var $checkbox = $(this).find("input[type='checkbox']");
+      $checkbox.attr("checked", !$checkbox.attr("checked"));
+    }
     $(this).toggleClass("u--line-through");
+
   });
 
 }
