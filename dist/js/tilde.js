@@ -780,6 +780,8 @@ function setGmailFavicon() {
 
   if (c === 0) {
     $(document).prop('title', 'Inbox - javier@tilde.club');
+  } else if (c > 0 && c < 3) {
+    $(document).prop('title', 'I feel ignored');
   } else {
     $(document).prop('title', 'Inbox ('+cT+') - javier@tilde.club');
   }
