@@ -347,9 +347,12 @@ function initNLP() {
 
     if (numChanges < 5) numChanges = textAdjectives.length;
 
+    if (!numChanges) return;
+
     for (i = 0; i < numChanges; i++) {
 
       var a = textAdjectives[Math.round(Math.random() * (textAdjectives.length - 1))];
+
       if (!a) return;
 
       if (a.match("ic$")) {
@@ -384,6 +387,8 @@ function initNLP() {
 
     $tag.html(text);
 
+    return text;
+
   }
 
   var onSubmit = function(e) {
@@ -391,11 +396,13 @@ function initNLP() {
     e.preventDefault();
     e.stopPropagation();
 
-    replaceAdjectives($textarea, true);
+    var replaced = replaceAdjectives($textarea, true);
 
-    var $subtitle = $(".js-nlp .js-subtitle small");
-    $subtitle.html("&mdash; Paste a short text, punch the black button &mdash;")
-    replaceAdjectives($subtitle);
+    if (replaced) {
+      var $subtitle = $(".js-nlp .js-subtitle small");
+      $subtitle.html("&mdash; Paste a short text, punch the black button &mdash;")
+      replaceAdjectives($subtitle);
+    }
 
   };
 
