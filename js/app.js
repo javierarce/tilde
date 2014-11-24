@@ -347,11 +347,9 @@ function initNLP() {
 
     if (numChanges < 5) numChanges = textAdjectives.length;
 
-    for (i = 0; i <= numChanges; i++) {
+    for (i = 0; i < numChanges; i++) {
 
       var a = textAdjectives[Math.round(Math.random() * (textAdjectives.length - 1))];
-
-      if (!a) return;
 
       if (a.match("ic$")) {
         adjs = adjectives.ic;
