@@ -325,8 +325,6 @@ function initNLP() {
   $textarea = $(".js-nlp .textarea-field .textarea");
   $submit   = $(".js-nlp .js-nlp-submit");
 
-  var adjectives = [];
-
   var extractAdjectives = function(text) {
 
     var adjectives = [];
@@ -345,13 +343,40 @@ function initNLP() {
     e.preventDefault();
     e.stopPropagation();
 
-    var text       = $textarea.text();
-    var adjectives = extractAdjectives(text);
+    var text                = $textarea.text();
+    var textAdjectives      = extractAdjectives(text);
+    var percentageOfChanges = .7;
+    var numChanges          = Math.round(textAdjectives.length * percentageOfChanges);
 
-    for (i = 0; i<5; i++) {
-      var randomAdjective = adjs[Math.round(Math.random() * (adjs.length - 1))];
-      var a = adjectives[Math.round(Math.random() * (adjectives.length - 1))];
-      text = text.replace(a, "<strong>"+ randomAdjective + "</strong>");
+    for (i = 0; i <= percentageOfChanges; i++) {
+
+      var a = textAdjectives[Math.round(Math.random() * (textAdjectives.length - 1))];
+
+      if (!a) return;
+
+      if (a.match("ic$")) {
+        adjs = adjectives.ic;
+      } else if (a.match("ble$")) {
+        adjs = adjectives.ble;
+      } else if (a.match("ed$")) {
+        adjs = adjectives.ed;
+      } else if (a.match("ing$")) {
+        adjs = adjectives.ing;
+      } else if (a.match("al$")) {
+        adjs = adjectives.al;
+      } else if (a.match("ous")) {
+        adjs = adjectives.ous;
+      } else {
+        adjs = adjectives.adjectives;
+      }
+
+      b = adjs[Math.round(Math.random() * (adjs.length - 1))];
+
+      if (a[0] === a[0].toUpperCase()) b = b[0].toUpperCase() + b.substr(1);
+
+      var regex = new RegExp(a, 'g');
+      text = text.replace(regex, "<strong>" + b + "</strong>");
+
     }
 
     $textarea.html(text);
