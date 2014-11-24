@@ -372,7 +372,7 @@ function initNLP() {
 
       if (a[0] === a[0].toUpperCase()) b = b[0].toUpperCase() + b.substr(1);
 
-      var regex = new RegExp(a, 'g');
+      var regex = new RegExp('\\b' + a + '\\b', 'g');
 
       if (highlightWords) {
         text = text.replace(regex, "<strong>" + b + "</strong>");
