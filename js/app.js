@@ -347,7 +347,7 @@ function initNLP() {
 
     if (numChanges < 5) numChanges = textAdjectives.length;
 
-    if (!numChanges) return;
+    if (textAdjectives.length == 0) return;
 
     for (i = 0; i < numChanges; i++) {
 
