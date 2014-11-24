@@ -346,7 +346,7 @@ function initNLP() {
     });
 
     adjectives = _.compact(_.flatten(adjectives));
-    adjectives = _.without(adjectives, "not", "together");
+    adjectives = _.without(adjectives, "replaces", "not", "together");
 
     return adjectives;
 
@@ -417,6 +417,8 @@ function initNLP() {
       $subtitle.html("&mdash; Paste a short text, punch the black button &mdash;")
       replaceAdjectives($subtitle);
     }
+
+    replaceAdjectives($(".js-adjective"), true);
 
   };
 
