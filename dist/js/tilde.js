@@ -1087,11 +1087,15 @@ function initNLP() {
     var adjectives = [];
 
     var sentences = nlp.pos(text);
+
     _.each(sentences.sentences, function(s) {
       adjectives.push(_.pluck(s.adjectives(), "text"));
-    })
+    });
 
-    return _.compact(_.flatten(adjectives));
+    adjectives = _.compact(_.flatten(adjectives));
+    adjectives = _.without(adjectives, "not");
+
+    return adjectives;
 
   }
 
@@ -1108,7 +1112,7 @@ function initNLP() {
 
     for (i = 0; i < numChanges; i++) {
 
-      var a = textAdjectives[Math.round(Math.random() * (textAdjectives.length - 1))];
+      var a = textAdjectives[i];
 
       if (!a) return;
 
