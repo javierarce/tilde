@@ -1057,6 +1057,19 @@ function initType() {
 
 }
 
+function initNLP() {
+  $textarea = $(".js-nlp");
+
+
+  $textarea.on("keyup", function(e) {
+    var text = $textarea.val();
+    var words = text.split(" ");
+    var s = nlp.pos(text).sentences[0]
+    console.log(_.pluck(s.verbs(), "text"));
+  });
+
+}
+
 $(function() {
 
   initSubliminal();
@@ -1070,6 +1083,7 @@ $(function() {
   initAmIOnline();
   initQR();
   initType();
+  initNLP();
 
   Retina.init();
 
