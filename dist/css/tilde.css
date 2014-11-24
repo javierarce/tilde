@@ -58,6 +58,14 @@ p {
   line-height: 120%;
   max-width: 700px; }
 
+a.btn,
+.btn {
+  display: block;
+  padding: 8px 10px;
+  background: #000;
+  color: #fff;
+  text-decoration: none; }
+
 .credits {
   text-align: right; }
 
@@ -406,13 +414,12 @@ table tr td:first-child {
   font-family: serif; }
 
 .textarea-field {
-  height: 100px;
+  min-height: 100px;
   margin: 0 0 10px 0;
   padding: 10px;
   border: 1px solid #000; }
 
-.textarea-field textarea,
-.textarea-field > div {
+.textarea-field textarea {
   width: 100%;
   height: 100%;
   outline: none;
@@ -472,6 +479,22 @@ table tr td:first-child {
 
 .faq-list .close {
   float: right; }
+
+.nlp:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.nlp .btn {
+  float: right; }
+
+.nlp .textarea-field .textarea {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-size: 1em;
+  font-family: serif; }
 
 /*# sourceMappingURL=app.css.map */
 

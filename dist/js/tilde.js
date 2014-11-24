@@ -1058,30 +1058,44 @@ function initType() {
 }
 
 function initNLP() {
-  $textarea = $(".js-nlp");
+
+  $textarea = $(".js-nlp .textarea-field .textarea");
+  $submit   = $(".js-nlp .js-nlp-submit");
 
   var adjectives = [];
 
-  $textarea.on("keyup", function(e) {
-    var text = $textarea.text();
+  var extractAdjectives = function(text) {
+
+    var adjectives = [];
+
     var sentences = nlp.pos(text);
-    adjectives = [];
     _.each(sentences.sentences, function(s) {
-        adjectives.push(_.pluck(s.adjectives(), "text"));
+      adjectives.push(_.pluck(s.adjectives(), "text"));
     })
 
+    return _.compact(_.flatten(adjectives));
 
-    adjectives = _.compact(_.flatten(adjectives));
+  }
+
+  var onSubmit = function(e) {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    var text       = $textarea.text();
+    var adjectives = extractAdjectives(text);
 
     for (i = 0; i<5; i++) {
       var randomAdjective = adjs[Math.round(Math.random() * (adjs.length - 1))];
       var a = adjectives[Math.round(Math.random() * (adjectives.length - 1))];
-      text = text.replace(a, randomAdjective);
+      text = text.replace(a, "<strong>"+ randomAdjective + "</strong>");
     }
 
-    $textarea.text(text);
+    $textarea.html(text);
 
-  });
+  };
+
+  $submit.on("click", onSubmit);
 
 }
 
