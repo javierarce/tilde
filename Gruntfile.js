@@ -72,6 +72,7 @@ module.exports = function(grunt) {
           'js/vendor/jquery.music.snitch.js',
           'js/vendor/typed.js',
           'js/vendor/vem.js',
+          'js/vendor/adjs.js',
           'js/vendor/retina.js',
           'js/*.js',
         ],
