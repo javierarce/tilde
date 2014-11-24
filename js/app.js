@@ -320,6 +320,73 @@ function initType() {
 
 }
 
+function initNLP() {
+
+  $textarea = $(".js-nlp .textarea-field .textarea");
+  $submit   = $(".js-nlp .js-nlp-submit");
+
+  var extractAdjectives = function(text) {
+
+    var adjectives = [];
+
+    var sentences = nlp.pos(text);
+    _.each(sentences.sentences, function(s) {
+      adjectives.push(_.pluck(s.adjectives(), "text"));
+    })
+
+    return _.compact(_.flatten(adjectives));
+
+  }
+
+  var onSubmit = function(e) {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    var text                = $textarea.text();
+    var textAdjectives      = extractAdjectives(text);
+    var percentageOfChanges = .7;
+    var numChanges          = Math.round(textAdjectives.length * percentageOfChanges);
+
+    for (i = 0; i <= percentageOfChanges; i++) {
+
+      var a = textAdjectives[Math.round(Math.random() * (textAdjectives.length - 1))];
+
+      if (!a) return;
+
+      if (a.match("ic$")) {
+        adjs = adjectives.ic;
+      } else if (a.match("ble$")) {
+        adjs = adjectives.ble;
+      } else if (a.match("ed$")) {
+        adjs = adjectives.ed;
+      } else if (a.match("ing$")) {
+        adjs = adjectives.ing;
+      } else if (a.match("al$")) {
+        adjs = adjectives.al;
+      } else if (a.match("ous")) {
+        adjs = adjectives.ous;
+      } else {
+        adjs = adjectives.adjectives;
+      }
+
+      b = adjs[Math.round(Math.random() * (adjs.length - 1))];
+
+      if (a[0] === a[0].toUpperCase()) b = b[0].toUpperCase() + b.substr(1);
+
+      var regex = new RegExp(a, 'g');
+      text = text.replace(regex, "<strong>" + b + "</strong>");
+
+    }
+
+    $textarea.html(text);
+
+  };
+
+  $submit.on("click", onSubmit);
+
+}
+
 $(function() {
 
   initSubliminal();
@@ -333,6 +400,7 @@ $(function() {
   initAmIOnline();
   initQR();
   initType();
+  initNLP();
 
   Retina.init();
 
