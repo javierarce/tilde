@@ -373,7 +373,7 @@ function initNLP() {
 
       var regex = new RegExp(a, 'g');
 
-      if (highglightWord) {
+      if (highlightWords) {
         text = text.replace(regex, "<strong>" + b + "</strong>");
       } else {
         text = text.replace(regex, b);
@@ -391,7 +391,10 @@ function initNLP() {
     e.stopPropagation();
 
     replaceAdjectives($textarea, true);
-    replaceAdjectives($(".js-nlp .js-subtitle small"));
+
+    var $subtitle = $(".js-nlp .js-subtitle small");
+    $subtitle.html("&mdash; Paste a short text, punch the black button &mdash;")
+    replaceAdjectives($subtitle);
 
   };
 
