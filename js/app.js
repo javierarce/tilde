@@ -54,7 +54,15 @@ function initSubliminal() {
 
   function handleVisibilityChange() {
 
-    var subliminalMessages = ["Pay more attention", "Do not blink", "Hello, I must be going", "You blinked, you missed it", "I'm not here", "No incoming calls accepted"];
+    var subliminalMessages = [
+      "Pay more attention",
+      "Do not blink",
+      "Hello, I must be going",
+      "You blinked, you missed it",
+      "I'm not here",
+      "You are beautiful",
+      "No incoming calls accepted"
+    ];
 
     if (document[hidden]) {
       $("body").addClass("hidden");
