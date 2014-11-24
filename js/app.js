@@ -338,12 +338,9 @@ function initNLP() {
 
   }
 
-  var onSubmit = function(e) {
+  var replaceAdjectives = function($tag, highlightWords) {
 
-    e.preventDefault();
-    e.stopPropagation();
-
-    var text                = $textarea.text();
+    var text                = $tag.text();
     var textAdjectives      = extractAdjectives(text);
     var percentageOfChanges = .7;
     var numChanges          = Math.round(textAdjectives.length * percentageOfChanges);
@@ -375,11 +372,26 @@ function initNLP() {
       if (a[0] === a[0].toUpperCase()) b = b[0].toUpperCase() + b.substr(1);
 
       var regex = new RegExp(a, 'g');
-      text = text.replace(regex, "<strong>" + b + "</strong>");
+
+      if (highglightWord) {
+        text = text.replace(regex, "<strong>" + b + "</strong>");
+      } else {
+        text = text.replace(regex, b);
+      }
 
     }
 
-    $textarea.html(text);
+    $tag.html(text);
+
+  }
+
+  var onSubmit = function(e) {
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    replaceAdjectives($textarea, true);
+    replaceAdjectives($(".js-nlp .js-subtitle small"));
 
   };
 
