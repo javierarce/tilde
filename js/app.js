@@ -323,12 +323,27 @@ function initType() {
 function initNLP() {
   $textarea = $(".js-nlp");
 
+  var adjectives = [];
 
   $textarea.on("keyup", function(e) {
-    var text = $textarea.val();
-    var words = text.split(" ");
-    var s = nlp.pos(text).sentences[0]
-    console.log(_.pluck(s.verbs(), "text"));
+    var text = $textarea.text();
+    var sentences = nlp.pos(text);
+    adjectives = [];
+    _.each(sentences.sentences, function(s) {
+        adjectives.push(_.pluck(s.adjectives(), "text"));
+    })
+
+
+    adjectives = _.compact(_.flatten(adjectives));
+
+    for (i = 0; i<5; i++) {
+      var randomAdjective = adjs[Math.round(Math.random() * (adjs.length - 1))];
+      var a = adjectives[Math.round(Math.random() * (adjectives.length - 1))];
+      text = text.replace(a, randomAdjective);
+    }
+
+    $textarea.text(text);
+
   });
 
 }
