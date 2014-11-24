@@ -1093,7 +1093,7 @@ function initNLP() {
     });
 
     adjectives = _.compact(_.flatten(adjectives));
-    adjectives = _.without(adjectives, "not");
+    adjectives = _.without(adjectives, "not", "together");
 
     return adjectives;
 
