@@ -322,7 +322,9 @@ function initType() {
 
 function initNLP() {
 
+
   $textarea = $(".js-nlp .textarea-field .textarea");
+  $textarea.filteredPaste();
   $submit   = $(".js-nlp .js-nlp-submit");
 
   var extractAdjectives = function(text) {
