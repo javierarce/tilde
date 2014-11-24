@@ -345,6 +345,8 @@ function initNLP() {
     var percentageOfChanges = .7;
     var numChanges          = Math.round(textAdjectives.length * percentageOfChanges);
 
+    if (numChanges < 5) numChanges = textAdjectives.length;
+
     for (i = 0; i <= numChanges; i++) {
 
       var a = textAdjectives[Math.round(Math.random() * (textAdjectives.length - 1))];
