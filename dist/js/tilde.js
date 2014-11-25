@@ -928,7 +928,11 @@ function setGmailFavicon() {
   if (c === 0) {
     $(document).prop('title', 'Inbox - javier@tilde.club');
   } else if (c > 0 && c < 3) {
-    $(document).prop('title', 'I feel ignored - javier@tilde.club');
+
+    var sentences = ["I feel ignored", "Fwd: They are not humans!", "Re: we found the diamonds", ":(", "Are you there?", "Me me me me"];
+    var randomSentence = sentences[Math.round(Math.random()*(sentences.length - 1))];
+
+    $(document).prop('title', randomSentence + " - javier@tilde.club");
   } else {
     $(document).prop('title', 'Inbox ('+cT+') - javier@tilde.club');
   }
