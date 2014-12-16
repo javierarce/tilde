@@ -53,10 +53,9 @@ module.exports = function(grunt) {
 
     concat: {
       html: {
-        src: [
-          'index.html'
-        ],
-        dest: 'dist/index.html'
+        files: [
+          { expand: true, src: ['*.html'], dest: 'dist/' }
+        ]
       },
       css: {
         src: [
@@ -184,10 +183,12 @@ module.exports = function(grunt) {
     targethtml: {
       dist: {
         files: {
-          'dist/index.html': 'index.html'
+          'dist/index.html': 'index.html',
+          'dist/away.html': 'away.html'
         }
       }
     },
+
     push: {
       options: {
         files: ['package.json'],

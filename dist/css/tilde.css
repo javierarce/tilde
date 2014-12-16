@@ -384,9 +384,13 @@ table tr td:first-child {
   text-align: center; }
 
 .opening-hours {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
+  width: auto; }
+
+.opening-hours td {
+  text-align: left; }
+
+.opening-hours .day {
+  text-align: center; }
 
 .checklist {
   list-style: none;

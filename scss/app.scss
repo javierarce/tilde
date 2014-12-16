@@ -418,13 +418,15 @@ table tr td:first-child {
 }
 
 .opening-hours {
-  list-style: none;
-  margin: 0; padding: 0;
+  width: auto;
 }
 
-.opening-hours {
-  list-style: none;
-  margin: 0; padding: 0;
+.opening-hours td {
+  text-align: left;
+}
+
+.opening-hours .day {
+  text-align: center;
 }
 
 .checklist {
