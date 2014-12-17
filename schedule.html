@@ -6,13 +6,21 @@
 
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
     <meta name="viewport" content="width=device-width">
-    
+    <!--(if target dev)><!-->
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/underscore.min.js"></script>
+    <script src="js/vendor/jquery.highlight.js"></script>
+    <link href='css/app.css' rel='stylesheet' type='text/css' />
+    <!--<!(endif)--><!--(if target dist)><!-->
     <link href="css/tilde.min.css" rel='stylesheet' type='text/css' />
-    
+    <!--<!(endif)-->
   </head>
   <body>
 
     <div class="content">
+
+      <p>We're currently closed. Please, come back later.</p>
+
       <h3>OPENING HOURS</h3>
 
       <table class="opening-hours" cellpadding="0" cellspacing="0">
@@ -45,6 +53,16 @@
           <td>All day</td>
         </tr>
       </table>
+      <footer>
+        <ul>
+          <li>
+            This &tilde; was updated <span class="random-update-moment-js"></span> <span class="updated-at-js"></span> from Madrid by <a href="http://twitter.com/javier">@javier</a>. 
+          </li>
+          <li>
+            Powered by <span class="heart">&hearts;</span> (by the unicode character of a heart, not by actual love)
+          </li>
+        </ul>
+      </footer>
     </div>
 
   </div>
