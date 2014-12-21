@@ -73,6 +73,7 @@ module.exports = function(grunt) {
           'js/vendor/vem.js',
           'js/vendor/jquery-filteredPaste.js',
           'js/vendor/nlp.min.js',
+          'js/vendor/PataphysicalDate.js',
           'js/vendor/adjs.js',
           'js/vendor/retina.js',
           'js/*.js',

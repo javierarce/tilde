@@ -430,6 +430,10 @@ function initNLP() {
 
 }
 
+function initPataphysicalDate() {
+  $(".PataphysicalDate-js").html(new PataphysicalDate().toString())
+}
+
 $(function() {
 
   initSubliminal();
@@ -444,6 +448,7 @@ $(function() {
   initQR();
   initType();
   initNLP();
+  initPataphysicalDate();
 
   Retina.init();
 
