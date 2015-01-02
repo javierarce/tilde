@@ -360,12 +360,12 @@ function initNLP() {
 
     var text                = $tag.text();
     var textAdjectives      = extractAdjectives(text);
-    var percentageOfChanges = .7;
+    var percentageOfChanges = 0.7;
     var numChanges          = Math.round(textAdjectives.length * percentageOfChanges);
 
     if (numChanges < 5) numChanges = textAdjectives.length;
 
-    if (textAdjectives.length == 0) return;
+    if (textAdjectives.length === 0) return;
 
     for (i = 0; i < numChanges; i++) {
 
@@ -418,7 +418,7 @@ function initNLP() {
 
     if (replaced) {
       var $subtitle = $(".js-nlp .js-subtitle small");
-      $subtitle.html("&mdash; Paste a short text, punch the black button &mdash;")
+      $subtitle.html("&mdash; Paste a short text, punch the black button &mdash;");
       replaceAdjectives($subtitle);
     }
 
@@ -431,26 +431,80 @@ function initNLP() {
 }
 
 function initPataphysicalDate() {
-  $(".PataphysicalDate-js").html(new PataphysicalDate().toString())
+  $(".PataphysicalDate-js").html(new PataphysicalDate().toString());
 }
 
-$(function() {
+function initGraph() {
 
-  initSubliminal();
-  initCheckList();
-  initWalk();
-  initDisparition();
-  initNostalgia();
-  initMoments();
-  initMusicSnitch();
-  initUpdatedAt();
-  initAmIOnline();
-  initQR();
-  initType();
-  initNLP();
-  initPataphysicalDate();
+  var margin = { top: 0, right: 0, bottom: 5, left: 40 },
+  width = $(".walk-diagram-js").width() - margin.left - margin.right,
+  height = 140 - margin.top - margin.bottom;
 
-  Retina.init();
+  var y = d3.scale.linear()
+  .range([height, 0]);
 
-});
+var chart = d3.select(".chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  d3.json("http://monitor.javierarce.com/api/month", function(error, json) {
+    if (error) return console.warn(error);
+    data = json;
+
+    var barWidth = width/data.length;
+
+    y.domain([0, d3.max(data, function(d) { return d.steps; } )]);
+
+    var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left")
+    .ticks(5);
+
+    chart.append("g")
+    .attr("class", "y axis")
+    .call(yAxis);
+
+    var bar = chart.selectAll(".bar")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("class", "bar")
+    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ", 0 )"; });
+
+    bar
+    .attr("y", function(d){ return y(d.steps) })
+    .attr("height", function(d) { return height - y(d.steps); })
+    .attr("width", barWidth - 1);
+
+
+
+  });
+
+}
+
+  $(function() {
+
+    initSubliminal();
+    initCheckList();
+    initWalk();
+    initDisparition();
+    initNostalgia();
+    initMoments();
+    initMusicSnitch();
+    initUpdatedAt();
+    initAmIOnline();
+    initQR();
+    initType();
+    initNLP();
+    initPataphysicalDate();
+
+    setTimeout(function() {
+      initGraph();
+    }, 200);
+
+    Retina.init();
+
+  });
 
