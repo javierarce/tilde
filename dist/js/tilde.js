@@ -1897,7 +1897,7 @@ function initGraph() {
 
   var margin = { top: 0, right: 0, bottom: 5, left: 40 },
   width = $(".walk-diagram-js").width() - margin.left - margin.right,
-  height = 80 - margin.top - margin.bottom;
+  height = 140 - margin.top - margin.bottom;
 
   var y = d3.scale.linear()
   .range([height, 0]);
