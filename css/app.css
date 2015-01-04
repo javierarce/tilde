@@ -522,6 +522,9 @@ table tr td:first-child {
 .bar {
   fill: black; }
 
+.bar.today {
+  fill: #666; }
+
 .axis {
   font: 10px sans-serif; }
 

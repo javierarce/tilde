@@ -1813,7 +1813,7 @@ function initNLP() {
 
     return adjectives;
 
-  }
+  };
 
   var replaceAdjectives = function($tag, highlightWords) {
 
@@ -1866,7 +1866,7 @@ function initNLP() {
 
     return text;
 
-  }
+  };
 
   var onSubmit = function(e) {
 
@@ -1893,9 +1893,24 @@ function initPataphysicalDate() {
   $(".PataphysicalDate-js").html(new PataphysicalDate().toString());
 }
 
+function getCurrentDate() {
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+
+  var yyyy = today.getFullYear();
+  if(dd<10){
+    dd='0'+dd;
+  } 
+  if(mm<10){
+    mm='0'+mm;
+  } 
+  return yyyy+'-'+mm+'-'+dd;
+}
+
 function initGraph() {
 
-  var margin = { top: 0, right: 0, bottom: 5, left: 40 },
+  var margin = { top: 10, right: 0, bottom: 5, left: 40 },
   width = $(".walk-diagram-js").width() - margin.left - margin.right,
   height = 140 - margin.top - margin.bottom;
 
@@ -1926,17 +1941,23 @@ var chart = d3.select(".chart")
     .call(yAxis);
 
     var bar = chart.selectAll(".bar")
-    .data(data)
+    .data(data.reverse())
     .enter()
     .append("rect")
-    .attr("class", "bar")
-    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ", 0 )"; });
+    .attr("class", function(d) {
+      var date = d.created_at.split("T")[0];
+      if (date == getCurrentDate()) {
+        return "bar today";
+      } else {
+        return "bar";
+      }
+    })
+    .attr("transform", function(d, i) { return "translate(" + (2 + i * barWidth) + ", 0 )"; });
 
     bar
-    .attr("y", function(d){ return y(d.steps) })
-    .attr("height", function(d) { return height - y(d.steps); })
+    .attr("y", function(d){ return d.steps ? y(d.steps) : 0; })
+    .attr("height", function(d) { return d.steps ? height - y(d.steps) : 1; })
     .attr("width", barWidth - 1);
-
 
 
   });
