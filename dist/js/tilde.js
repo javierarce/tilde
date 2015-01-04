@@ -1955,7 +1955,7 @@ var chart = d3.select(".chart")
     .attr("transform", function(d, i) { return "translate(" + (2 + i * barWidth) + ", 0 )"; });
 
     bar
-    .attr("y", function(d){ return d.steps ? y(d.steps) : 0; })
+    .attr("y", function(d){ return d.steps ? y(d.steps) : height - 1; })
     .attr("height", function(d) { return d.steps ? height - y(d.steps) : 1; })
     .attr("width", barWidth - 1);
 
