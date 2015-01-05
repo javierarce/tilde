@@ -1910,18 +1910,18 @@ function getCurrentDate() {
 
 function initGraph() {
 
-  var margin = { top: 10, right: 0, bottom: 5, left: 40 },
-  width = $(".walk-diagram-js").width() - margin.left - margin.right,
-  height = 140 - margin.top - margin.bottom;
+  var margin = { top: 10, right: 0, bottom: 25, left: 40 };
+  var width = $(".walk-diagram-js").width() - margin.left - margin.right;
+  var height = 140 - margin.top - margin.bottom;
 
   var y = d3.scale.linear()
   .range([height, 0]);
 
-var chart = d3.select(".chart")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+  var chart = d3.select(".chart")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
   d3.json("http://monitor.javierarce.com/api/month", function(error, json) {
     if (error) return console.warn(error);
@@ -1939,6 +1939,17 @@ var chart = d3.select(".chart")
     chart.append("g")
     .attr("class", "y axis")
     .call(yAxis);
+
+    var label = chart.append("text")
+    .attr("x", function() {
+      return (width/2) - (80/2) + margin.left - margin.right
+    })
+    .attr("y", height)
+    .attr("dy", "1.3em")
+    .attr("font-size", ".9em")
+    .attr("font-style", "italic")
+    .text("Last 30 days")
+    .attr("text-anchor", "middle");
 
     var bar = chart.selectAll(".bar")
     .data(data.reverse())
@@ -1964,27 +1975,27 @@ var chart = d3.select(".chart")
 
 }
 
-  $(function() {
+$(function() {
 
-    initSubliminal();
-    initCheckList();
-    initWalk();
-    initDisparition();
-    initNostalgia();
-    initMoments();
-    initMusicSnitch();
-    initUpdatedAt();
-    initAmIOnline();
-    initQR();
-    initType();
-    initNLP();
-    initPataphysicalDate();
+  initSubliminal();
+  initCheckList();
+  initWalk();
+  initDisparition();
+  initNostalgia();
+  initMoments();
+  initMusicSnitch();
+  initUpdatedAt();
+  initAmIOnline();
+  initQR();
+  initType();
+  initNLP();
+  initPataphysicalDate();
 
-    setTimeout(function() {
-      initGraph();
-    }, 200);
+  setTimeout(function() {
+    initGraph();
+  }, 200);
 
-    Retina.init();
+  Retina.init();
 
-  });
+});
 
