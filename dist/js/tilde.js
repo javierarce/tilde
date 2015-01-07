@@ -1942,11 +1942,11 @@ function initGraph() {
 
     var label = chart.append("text")
     .attr("x", function() {
-      return (width/2) - (80/2) + margin.left - margin.right
+      return (width/2) - (64/2) + margin.left - margin.right
     })
     .attr("y", height)
     .attr("dy", "1.3em")
-    .attr("font-size", ".9em")
+    .attr("font-size", ".8em")
     .attr("font-style", "italic")
     .text("Last 30 days")
     .attr("text-anchor", "middle");
