@@ -451,7 +451,7 @@ function getCurrentDate() {
 
 function initGraph() {
 
-  var margin = { top: 10, right: 0, bottom: 25, left: 40 };
+  var margin = { top: 10, right: 5, bottom: 25, left: 40 };
   var width = $(".walk-diagram-js").width() - margin.left - margin.right;
   var height = 140 - margin.top - margin.bottom;
 
@@ -481,6 +481,16 @@ function initGraph() {
     .attr("class", "y axis")
     .call(yAxis);
 
+    // Draw Y-axis grid lines
+    chart.selectAll("line.y")
+    .data(y.ticks(5))
+    .enter().append("line")
+    .attr("class", "y")
+    .attr("x1", 5)
+    .attr("x2", width + 5)
+    .attr("y1", y)
+    .attr("y2", y);
+
     var label = chart.append("text")
     .attr("x", function() {
       return (width/2) - (64/2) + margin.left - margin.right
@@ -494,8 +504,7 @@ function initGraph() {
 
     var bar = chart.selectAll(".bar")
     .data(data.reverse())
-    .enter()
-    .append("rect")
+    .enter().append("rect")
     .attr("class", function(d) {
       var date = d.created_at.split("T")[0];
       if (date == getCurrentDate()) {
@@ -504,13 +513,11 @@ function initGraph() {
         return "bar";
       }
     })
-    .attr("transform", function(d, i) { return "translate(" + (2 + i * barWidth) + ", 0 )"; });
+    .attr("transform", function(d, i) { return "translate(" + (5 + i * barWidth) + ", 0 )"; })
 
-    bar
-    .attr("y", function(d){ return d.steps ? y(d.steps) : height - 1; })
-    .attr("height", function(d) { return d.steps ? height - y(d.steps) : 1; })
+    .attr("y", function(d){ return d.steps ? y(d.steps) : height; })
+    .attr("height", function(d) { return d.steps ? height - y(d.steps) : 0; })
     .attr("width", barWidth - 1);
-
 
   });
 

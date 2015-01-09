@@ -557,6 +557,7 @@ table tr td:first-child {
 
 .bar {
   fill: black;
+  shape-rendering: crispEdges;
 }
 
 .bar.today {
@@ -571,6 +572,11 @@ table tr td:first-child {
 .axis line {
   fill: none;
   stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+line.y {
+  stroke: #f1f1f1;
   shape-rendering: crispEdges;
 }
 
