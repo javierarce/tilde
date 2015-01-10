@@ -1925,7 +1925,7 @@ function initGraph() {
 
   d3.json("http://monitor.javierarce.com/api/month", function(error, json) {
     if (error) return console.warn(error);
-    data = json;
+    data = json.slice(0,15);
 
     var barWidth = width/data.length;
 
@@ -1958,7 +1958,7 @@ function initGraph() {
     .attr("dy", "1.3em")
     .attr("font-size", ".8em")
     .attr("font-style", "italic")
-    .text("Last 30 days")
+    .text("Last 15 days")
     .attr("text-anchor", "middle");
 
     var bar = chart.selectAll(".bar")
